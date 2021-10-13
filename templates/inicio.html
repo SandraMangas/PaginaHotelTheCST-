@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block titulo %} Inicio {% endblock %}  
+
+
+{% block contenido %}  
+<br>
+
+
+{% if sesion_iniciada %}
+    <p>Bienvenido</p>
+
+    <br>
+
+    {% for key, habitacion in hab_disponibles.items() %}
+        <h2>{{ habitacion.titulo }}</h2>
+        <p>{{ habitacion.cuerpo }} <a href=¨/habitacion/{{key}}¨> [clic aquí]</a> </p> 
+
+        {% for imagen in habitacion.imagenes %}
+            <p>{{ urlimagen }}</p>
+        {% endfor %}
+
+    {% endfor %}    
+
+
+    <form action="/salir"methods="POST">
+        {{ csrf_tokem}}
+
+        <input type="submit" name="" value="salir">
+    </form>
+{% else %}
+    <p>Para poder visualizar habitaciones disponibles debe iniciar sesion: <a href="\ingreso">[clic aqui]</a></p>
+{% endif %}  
+
+    
+{% endblock %}      
