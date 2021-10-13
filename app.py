@@ -8,10 +8,10 @@ from flask import request
 
 app = Flask(__name__)
 #app.secret_key = os.urandom(20)
-
+#agregar, editar, eliminar
 lista_usuarios = ["smangas", "arodriguez", "cvazquez", "dmartinez"]
 hab_disponibles = {
-    101:  {'titulo': "Individual", 'cuerpo':"una habitación asignada a una persona. Puede tener una o más camas.",'imagenes':['img 1', 'img 2' ]},
+    101:  {'titulo': "Individual", 'cuerpo':"Una habitación asignada a una persona. Puede tener una o más camas.",'imagenes':['img 1', 'img 2' ]},
     102:  {'titulo': "Doble", 'cuerpo':"Una habitación asignada a dos personas. Puede tener una o más camas.", 'imagenes':['img 1', 'img 2' ]},
     202:  {'titulo': "Triple", 'cuerpo':"Una habitación asignada a tres personas. Puede tener dos o más camas.",'imagenes':['img 1', 'img 2' ]},
     302:  {'titulo': "Quad", 'cuerpo':"Una sala asignada a cuatro personas. Puede tener dos o más camas.",'imagenes':["img 1", 'img 2' ]},
@@ -69,7 +69,7 @@ def detalle_habitacion(id_habitacion):
         id_habitacion = int(id_habitacion)
     except Exception as e:
         id_habitacion = 0    
-        return f"Detalle habitación: {id_habitacion}"
+    return f"Detalle habitacion: {id_habitacion}"
 
 @app.route("/reserva_habitacion/habitacion/<id_habitacion>", methods=["GET","POST"])
 def detalle_reserva(id_habitacion):
@@ -79,7 +79,7 @@ def detalle_reserva(id_habitacion):
         id_habitacion = 0
 
     if id_habitacion in hab_disponibles:
-       return hab_disponibles[id_habitacion]
+       return hab_disponibles[id_habitacion]["titulo"]
     else:
         return f"La habitación: ({id_habitacion}) no esta disponible"
 
@@ -106,5 +106,3 @@ def panel_admin(usuario):
 
 if __name__=="__main__":
     app.run(debug=True)     
-
-
