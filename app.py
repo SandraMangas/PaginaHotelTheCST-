@@ -32,6 +32,10 @@ def inicio():
        hab_disponibles=hab_disponibles
     )
 
+@app.route("/inicio/mision_vision")
+def mision_vision():
+    return render("inicio/mision_vision.html")
+
 @app.route("/registro", methods=["GET","POST"])
 def registro():
     return "Página de registro"
@@ -45,15 +49,23 @@ def ingreso():
         sesion_iniciada = True    
         return redirect('/inicio') 
 
+@app.route("/perfil", methods=["GET","POST"])
+def perfil():
+     return "Página perfil de usuario"
+
+@app.route("perfil/cliente/menu_cliente",methods=["GET","POST"])
+def menu_cliente():
+    return render("cliente/menu_cliente.html")
+
+@app.route("perfil/admin/menu_administrador", methods=["GET","POST"])
+def menu_administrador():
+    return render("admin/menu_administrador.html") 
+
 @app.route("/salir", methods=["POST"])
 def salir():
     global sesion_iniciada
     sesion_iniciada = False
     return redirect('/inicio')      
-
-@app.route("/perfil", methods=["GET","POST"])
-def perfil():
-     return "Página perfil de usuario"
 
 #Buscar usuario dentro del perfil de administrador o superadministrador
 @app.route("/usuario/<id_usuario>", methods=["GET"])
@@ -62,6 +74,18 @@ def usuario_info(id_usuario):
         return f"Perfil de usuario:: {id_usuario}"
     else:    
         return f"Usuario: {id_usuario} no existe"
+
+@app.route("/admin/crear_usuario", methods=["GET", "POST"])
+def crear_usuario():
+    return ("admin/crear_usuario.html")        
+
+@app.route("/admin/editar_usuario", methods=["GET","POST"])
+def editar_usuario():
+    return render("admin/editar_usuario.html")
+
+@app.route("/admin/editar_usuario")
+def editar_usuario():
+    return render("admin/editar_usuario.html")
 
 @app.route("/habitacion/<id_habitacion>", methods=["GET","POST"])
 def detalle_habitacion(id_habitacion):
