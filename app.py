@@ -83,10 +83,6 @@ def crear_usuario():
 def editar_usuario():
     return render("admin/editar_usuario.html")
 
-@app.route("/admin/editar_usuario")
-def editar_usuario():
-    return render("admin/editar_usuario.html")
-
 @app.route("/habitacion/<id_habitacion>", methods=["GET","POST"])
 def detalle_habitacion(id_habitacion):
     try:
@@ -106,6 +102,14 @@ def detalle_reserva(id_habitacion):
        return hab_disponibles[id_habitacion]["titulo"]
     else:
         return f"La habitación: ({id_habitacion}) no esta disponible"
+
+@app.route("/admin/crear_habitacion", methods=["GET","POST"])
+def crear_habitaciob():
+    return render("admin/crear_habitacion.html")
+
+@app.route("/admin/editar_habitacion/<id_habitacion>", methods=["GET","POST"])
+def editar_habitacion(id_habitacion):
+    return render("admin/editar_habitacion.html")    
 
 @app.route("/calificar_habitación/<id_habitacion>", methods=["GET, POST"])
 def habitacion(id_habitacion):
