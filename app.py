@@ -8,10 +8,10 @@ from flask import request
 
 app = Flask(__name__)
 #app.secret_key = os.urandom(20)
-
+#agregar, editar, eliminar
 lista_usuarios = ["smangas", "arodriguez", "cvazquez", "dmartinez"]
 hab_disponibles = {
-    101:  {'titulo': "Individual", 'cuerpo':"una habitación asignada a una persona. Puede tener una o más camas.",'imagenes':['img 1', 'img 2' ]},
+    101:  {'titulo': "Individual", 'cuerpo':"Una habitación asignada a una persona. Puede tener una o más camas.",'imagenes':['img 1', 'img 2' ]},
     102:  {'titulo': "Doble", 'cuerpo':"Una habitación asignada a dos personas. Puede tener una o más camas.", 'imagenes':['img 1', 'img 2' ]},
     202:  {'titulo': "Triple", 'cuerpo':"Una habitación asignada a tres personas. Puede tener dos o más camas.",'imagenes':['img 1', 'img 2' ]},
     302:  {'titulo': "Quad", 'cuerpo':"Una sala asignada a cuatro personas. Puede tener dos o más camas.",'imagenes':["img 1", 'img 2' ]},
@@ -32,6 +32,10 @@ def inicio():
        hab_disponibles=hab_disponibles
     )
 
+@app.route("/inicio/mision_vision")
+def mision_vision():
+    return render("inicio/mision_vision.html")
+
 @app.route("/registro", methods=["GET","POST"])
 def registro():
     return "Página de registro"
@@ -45,15 +49,23 @@ def ingreso():
         sesion_iniciada = True    
         return redirect('/inicio') 
 
+@app.route("/perfil", methods=["GET","POST"])
+def perfil():
+     return "Página perfil de usuario"
+
+@app.route("perfil/cliente/menu_cliente",methods=["GET","POST"])
+def menu_cliente():
+    return render("cliente/menu_cliente.html")
+
+@app.route("perfil/admin/menu_administrador", methods=["GET","POST"])
+def menu_administrador():
+    return render("admin/menu_administrador.html") 
+
 @app.route("/salir", methods=["POST"])
 def salir():
     global sesion_iniciada
     sesion_iniciada = False
     return redirect('/inicio')      
-
-@app.route("/perfil", methods=["GET","POST"])
-def perfil():
-     return "Página perfil de usuario"
 
 #Buscar usuario dentro del perfil de administrador o superadministrador
 @app.route("/usuario/<id_usuario>", methods=["GET"])
@@ -63,13 +75,21 @@ def usuario_info(id_usuario):
     else:    
         return f"Usuario: {id_usuario} no existe"
 
+@app.route("/admin/crear_usuario", methods=["GET", "POST"])
+def crear_usuario():
+    return ("admin/crear_usuario.html")        
+
+@app.route("/admin/editar_usuario", methods=["GET","POST"])
+def editar_usuario():
+    return render("admin/editar_usuario.html")
+
 @app.route("/habitacion/<id_habitacion>", methods=["GET","POST"])
 def detalle_habitacion(id_habitacion):
     try:
         id_habitacion = int(id_habitacion)
     except Exception as e:
         id_habitacion = 0    
-        return f"Detalle habitación: {id_habitacion}"
+    return f"Detalle habitacion: {id_habitacion}"
 
 @app.route("/reserva_habitacion/habitacion/<id_habitacion>", methods=["GET","POST"])
 def detalle_reserva(id_habitacion):
@@ -79,9 +99,17 @@ def detalle_reserva(id_habitacion):
         id_habitacion = 0
 
     if id_habitacion in hab_disponibles:
-       return hab_disponibles[id_habitacion]
+       return hab_disponibles[id_habitacion]["titulo"]
     else:
         return f"La habitación: ({id_habitacion}) no esta disponible"
+
+@app.route("/admin/crear_habitacion", methods=["GET","POST"])
+def crear_habitaciob():
+    return render("admin/crear_habitacion.html")
+
+@app.route("/admin/editar_habitacion/<id_habitacion>", methods=["GET","POST"])
+def editar_habitacion(id_habitacion):
+    return render("admin/editar_habitacion.html")    
 
 @app.route("/calificar_habitación/<id_habitacion>", methods=["GET, POST"])
 def habitacion(id_habitacion):
@@ -106,5 +134,3 @@ def panel_admin(usuario):
 
 if __name__=="__main__":
     app.run(debug=True)     
-
-
