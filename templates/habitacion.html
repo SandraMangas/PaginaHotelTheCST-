@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css' ) }}">
+    <title>habitaciones</title>
+</head>
+<body>
+   
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class=flashes>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    <div class="container">
+      <h1 class="mb-5">Gestion de habitaciones</h1>
+      <a href="/listar_habitaciones" class="btn btn-primary mb-5"> Listar habitaciones </a>
+      <form action="/registrarhabitaciones" method="POST">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Tipo de habitacion: </label>
+          <input type="text" class="form-control js-nombre" id="tipo_habitacion" value="Individual" title="Ingrese tipo de habitacion" name="tipo_habitacion">
+        </div>
+        <div class="mb-3">
+          <label for="detalle_habitacion" class="form-label">Detalle habitacion: </label>
+          <input type="text" class="form-control js-nombre" id="detalle_habitacion" value="Una habitación asignada a una persona. Puede tener una o más camas." title="Ingrese detalle habitacion" name="detalle_habitacion">
+        </div>
+        <div class="mb-3">
+          <label for="valoracion" class="form-label">Valoracion: </label>
+          <input type="number" class="form-control js-nombre" id="valoracion" value="1" title="Ingrese valoracion" name="valoracion" min="1" max="5">
+        </div>
+        <div class="mb-3">
+          <input type="checkbox" class="form-check-input" id="check" title="Ingrese detalle de la habitacion" name="check" required>
+          <label for="detalle_habitacion" class="form-label">Status </label>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Ingresar"></input>
+      </form>
+    </div>
+
+</body>
+</html>
