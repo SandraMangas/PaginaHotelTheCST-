@@ -1,6 +1,6 @@
 """
 create table usuario
-date created: 2021-10-21 02:07:22.582912
+date created: 2021-10-21 19:12:07.767588
 """
 
 
