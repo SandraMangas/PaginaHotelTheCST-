@@ -1,8 +1,11 @@
-import os
-
 from flask import Flask, render_template, request, flash, redirect
+from models import *
+from config import dev
+
 app= Flask(__name__)
-app.secret_key = os.urandom(24)
+# app.secret_key = os.urandom(24)
+app.config.from_object(dev)
+db.init_app(app)
 
 habitaciones = [('Individual', 'Una habitación asignada a una persona. Puede tener una o más camas.', '1', 'off'), 
                 ('Doble', 'Una habitación asignada a dos personas. Puede tener una o más camas.', '2', 'off'), 
@@ -215,4 +218,4 @@ def panel_admin(usuario):
 '''
 
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run()

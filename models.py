@@ -1,8 +1,6 @@
 from peewee import *
 from playhouse.flask_utils import FlaskDB
 
-from app import habitacion
-
 db = FlaskDB()
 
 class Usuario(db.Model):
