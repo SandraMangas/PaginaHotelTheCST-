@@ -47,146 +47,55 @@
         </header>
         <!--================Header Area =================-->
 
-         <!--================Breadcrumb Area =================-->
-         <section class="breadcrumb_area">
-            <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
+        <!--================Contact Area =================-->
+
+        <section class="contact_area section_gap">
             <div class="container">
-                <div class="page-cover text-center">
-                    <h2 class="page-cover-tittle">Habitaciones</h2>
-                   
+              <h3 class="typo-list">Habitacion 101</h3>
+              <div class="row">
+                <div class="col-md-3">
+                  <img src="../static/image/room2.jpg" alt="" class="img-fluid">
                 </div>
+                <div class="col-md-7">
+                  <form class="row contact_form">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <h5 class="typo-list">Comentarios</h5>
+                        <textarea class="form-control" name="message" id="message" rows="1"
+                          placeholder="Cuentanos tu experiencia!"></textarea>
+                      </div>
+                      <h5 class="typo-list">Calificacion</h5>
+                      <div class="default-select" id="default-select">
+                        <select style="display: none;">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
+                        <div class="nice-select" tabindex="0"><span class="current">Escoje una opción</span>
+                          <ul class="list">
+                            <li data-value="1" class="option selected focus">1</li>
+                            <li data-value="2" class="option">2</li>
+                            <li data-value="3" class="option">3</li>
+                            <li data-value="4" class="option">4</li>
+                            <li data-value="5" class="option">5</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>          
+                    <div class="col-md-12 text-right">
+                      <button type="submit" value="submit" class="btn theme_btn button_hover">Enviar</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-1"></div>
+              </div>
             </div>
-        </section>
-        <!--================Breadcrumb Area =================-->
-
-        <!--================Booking Tabel Area =================-->
-        <section class="hotel_booking_area">
-        <div class="container">
-            <div class="row hotel_booking_table">
-                
-                <div class="col-md-12">
-                    <div class="boking_table">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="book_tabel_item">
-                                    <div class="form-group">
-                                        <div class='input-group date' id='datetimepicker11'>
-                                            <input type='text' class="form-control" placeholder="Fecha de llegada"/>
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class='input-group date' id='datetimepicker1'>
-                                            <input type='text' class="form-control" placeholder="Fecha de salida"/>
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="book_tabel_item">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                          <input type="text" class="single-input form-control" placeholder="Cantidad Adultos">
-                                          <span class="input-group-addon">
-                                            <i class="fa fa-male" aria-hidden="true"></i>
-                                          </span>
-                                        </div>
-                                      </div>
-                                      <div class="form-group">
-                                        <div class="input-group">
-                                          <input type="text" class="single-input form-control" placeholder="Cantidad niños">
-                                          <span class="input-group-addon">
-                                            <i class="fa fa-male" aria-hidden="true"></i>
-                                          </span>
-                                        </div>
-                                      </div> 
-                                        
-
-
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="book_tabel_item">
-                                  <div class="form-group">  
-                                    <div class="input-group">
-                                        <input type="text" class="single-input form-control" placeholder="Cantidad de habitaciones">
-                                        <span class="input-group-addon">
-                                          <i class="fa fa-bed" aria-hidden="true"></i>
-                                        </span>
-                                      </div>
-                                    </div> 
-
-                                    <a class="book_now_btn button_hover" href="#">Editar</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </section>
-        <!--================Booking Tabel Area  =================-->
-
-
-        <!--================ Accomodation Area  =================-->
-        <section class="accomodation_area section_gap">
-            <div class="container">
-                <div class="section_title text-center">
-                    <h2 class="title_color">Nuestras Habitaciones</h2>
-                    
-                </div>
-                <div class="row accomodation_two">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="../static/image/room1.jpg" alt="">
-                                <a href="#" class="btn theme_btn button_hover">Reservar</a>
-                            </div>
-                            <a href="#"><h4 class="sec_h4">Habitación Doble</h4></a>
-                            <h5>$250<small>/noche</small></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="../static/image/room2.jpg" alt="">
-                                <a href="#" class="btn theme_btn button_hover">Reservar</a>
-                            </div>
-                            <a href="#"><h4 class="sec_h4">Habitación sencilla</h4></a>
-                            <h5>$200<small>/noche</small></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="../static/image/room3.jpg" alt="">
-                                <a href="#" class="btn theme_btn button_hover">Reservar</a>
-                            </div>
-                            <a href="#"><h4 class="sec_h4">Habitación Romantica</h4></a>
-                            <h5>$750<small>/noche</small></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="../static/image/room4.jpg" alt="">
-                                <a href="#" class="btn theme_btn button_hover">Reservar</a>
-                            </div>
-                            <a href="#"><h4 class="sec_h4">Habitación económica</h4></a>
-                            <h5>$150<small>/noche</small></h5>
-                        </div>
-                    </div>
-                    
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--================ Accomodation Area  =================-->
+          </section>
+          
+          
+        <!--================Contact Area =================-->
 
 
         <!--================ start footer Area  =================-->	
