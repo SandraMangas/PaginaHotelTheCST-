@@ -3,6 +3,8 @@ from models import *
 from config import dev
 
 app= Flask(__name__)
+
+
 # app.secret_key = os.urandom(24)
 app.config.from_object(dev)
 db.init_app(app)
