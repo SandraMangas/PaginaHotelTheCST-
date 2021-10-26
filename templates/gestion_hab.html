@@ -105,18 +105,11 @@
                                     <h3 class="typo-list">Listado habitaciones</h3>
                                 </div>
                                 <div class ="col-lg-2 col-md-2 text-right">
-                                    
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarHabitacion">
-                                        <i class="fas fa-plus"></i>
+                                      <i class="fas fa-plus"></i>
                                     </button>    
-                                     
-                                                                       
                                 </div>
                             </div>
-                            
-                           
-                            
-                            
                         </div>
                         <div class="card-body">
                             <table id="datatablesSimple">
@@ -134,10 +127,10 @@
                                     <tr>
                                         <th>No. de Habitación</th>
                                         <th>Tipo de habitación</th>
-                                        <th>Servicios</th>
                                         <th>Capacidad</th>
                                         <th>Estado</th>
                                         <th>Valor</th>
+                                        <th>Opciones</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -147,19 +140,13 @@
                                         <td>Desayuno</td>
                                         <td>1</td>
                                         <td>Pendiente</td>
-                                        <td>
-                                            
-                                         
-                                            <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h fa-sm" aria-hidden="true"></i></a>
+                                        <td class="text-center">
+                                            <a class="" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                              <i class="fa fa-ellipsis-h fa-sm" aria-hidden="true"></i>
+                                            </a>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="#!"><button type="button" class="btn btn-light btn-sm" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                    Editar
-                                                </button>
-                                                    </a>
-                                               </li>
-                                                <li><a class="dropdown-item" href="#!">
-                                                    <button type="button" class="btn btn-light btn-sm">Eliminar</button>                                                    
-                                                    </a></li>
+                                              <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#editarHabitacion"><i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i> Editar</a></li>
+                                              <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#eliminarHabitacion"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> Eliminar</a></li> 
                                             </ul>                                        
                                       </td>
                                     </tr>
@@ -227,10 +214,6 @@
                                         <td>2009/09/15</td>
                                         <td>$205,500</td>
                                     </tr>
-                          
-                         
-                       
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -253,11 +236,11 @@
                 </footer>
             </div>
         </div>
-       <!--================Search Bar =================-->
+      <!--================Search Bar =================-->
 
-       <!--================Inicio modales =================-->
-       <!--================Agregar habitación=================-->
-       <div class="modal fade bd-example-modal-lg" id="agregarHabitacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!--================Inicio modales =================-->
+      <!--================Agregar habitación=================-->
+      <div class="modal fade bd-example-modal-lg" id="agregarHabitacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -267,8 +250,7 @@
               </button>
             </div>
             <div class="modal-body">
-              
-               <form action="#" class="mt-2">
+              <form action="#" class="mt-2">
                 <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
@@ -332,13 +314,10 @@
                       </div>
                     </div>
                   </div>
-                  
-
-
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
               <button type="button" class="btn btn-primary">Agregar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             </div>
           </div>
         </div>
@@ -350,20 +329,19 @@
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Agregar Habitación</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Editar Habitación</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
                   
-                   <form action="#" class="mt-2">
+                  <form action="#" class="mt-2">
                     <div class="row">
                         <div class="col-md-6">
                           <div class="form-group">
                             <!--<label class="form-label" for="id_habitacion"><h5>Numero Habitacion</h5></label>-->
-                            <input type="text" name="first_name" id="id_habitacion" placeholder="Numero Habitacion" onfocus="this.placeholder = ''"
-                              onblur="this.placeholder = 'Numero Habitacion'" required class="single-input">
+                            <input type="text" name="first_name" id="id_habitacion" value="101" required class="single-input">
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -421,107 +399,39 @@
                           </div>
                         </div>
                       </div>
-                      
-    
-    
                 </div>
                 <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Editar</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-primary">Agregar</button>
                 </div>
               </div>
             </div>
           </div>
         <!--================Fin Editar habitación=================-->
         
-        
         <!--================Eliminar habitación=================-->
-        <div class="modal fade bd-example-modal-lg" id="eliminarHabitacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Agregar Habitación</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  
-                   <form action="#" class="mt-2">
-                    <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <!--<label class="form-label" for="id_habitacion"><h5>Numero Habitacion</h5></label>-->
-                            <input type="text" name="first_name" id="id_habitacion" placeholder="Numero Habitacion" onfocus="this.placeholder = ''"
-                              onblur="this.placeholder = 'Numero Habitacion'" required class="single-input">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <!--<label class="form-label" for="tipo_habitacion"><h5>Tipo Habitacion</h5></label>-->
-                            <div class="default-select" >
-                              <select style="display: none" id="tipo_habitacion">
-                                <option value="1">Sencilla</option>
-                                <option value="2">Doble</option>
-                                <option value="3">Romantica</option>
-                                <option value="4">Economica</option>
-                              </select>
-                              <div class="nice-select" tabindex="0"><span class="current">Tipo habitacion</span>
-                                <ul class="list">
-                                  <li data-value="1" class="option selected focus">Sencilla</li>
-                                  <li data-value="2" class="option">Doble</li>
-                                  <li data-value="3" class="option">Romantica</li>
-                                  <li data-value="4" class="option">Economica</li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <!--<label class="form-label" for="cant_huespedes"><h5>Cantidad Personas</h5></label>-->
-                            <input type="text" name="last_name" id="cant_huespedes" placeholder="Cantidad Personas" onfocus="this.placeholder = ''"
-                              onblur="this.placeholder = 'Cantidad Personas'" required class="single-input">
-                          </div>
-                        </div>              
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <!--<label class="form-label" for="precio_habitacion"><h5>Precio</h5></label>-->
-                            <input type="text" id="precio_habitacion" placeholder="Precio" onfocus="this.placeholder = ''"
-                              onblur="this.placeholder = 'Precio'" required class="single-input">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <!--<label class="form-label" for="status_habitacion"><h5>Status</h5></label>-->
-                            <div class="default-select">
-                              <select style="display: none" id="status_habitacion">
-                                <option value="1">Disponible</option>
-                                <option value="2">Reservada</option>
-                                <option value="3">Inactiva</option>
-                              </select>
-                              <div class="nice-select" tabindex="0"><span class="current">Status</span>
-                                <ul class="list">
-                                  <li data-value="1" class="option selected focus">Disponible</li>
-                                  <li data-value="2" class="option">Reservada</li>
-                                  <li data-value="3" class="option">Inactiva</li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-    
-    
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-primary">Agregar</button>
-                </div>
+        <div class="modal fade" id="eliminarHabitacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Habitación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>
+                  ¿Seguro que desea eliminar la habitación?
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Eliminar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
               </div>
             </div>
           </div>
+        </div>
         <!--================Fin Eliminar habitación=================-->
 
         <!--================Fin modales =================-->
