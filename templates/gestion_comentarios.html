@@ -20,6 +20,7 @@
             <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
             <link href="../static/css/styles.css" rel="stylesheet" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+            <link href="../static/css/comment.css">
         
     </head>
     <body>
@@ -98,135 +99,39 @@
             </div>
             <div id="layoutSidenav_content">
                 <!--aqui va cuadros de dashboard-->
-                <main>
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <div class ="row">
-                                <div class ="col-lg-10 col-md-10">
-                                    <h3 class="typo-list">Listado de Usuarios</h3>
-                                </div>
-                                <div class ="col-lg-2 col-md-2 text-right">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarUsuario">
-                                      <i class="fas fa-plus"></i>
-                                    </button>    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <table id="datatablesSimple">
-                                <thead>
-                                    <tr>
-                                        <th>ID de Usuario</th>
-                                        <th>Password</th>
-                                        <th>Nombres</th>
-                                        <th>Apellidos</th>
-                                        <th>Correo</th>
-                                        <th>Tipo Usuario</th>
-                                        <th>Estado</th>
-                                        <th>Opciones</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>ID de Usuario</th>
-                                        <th>Password</th>
-                                        <th>Nombres</th>
-                                        <th>Apellidos</th>
-                                        <th>Correo</th>
-                                        <th>Tipo Usuario</th>
-                                        <th>Estado</th>
-                                        <th>Opciones</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr>
-                                        <td>adromeroc</td>
-                                        <th>12345</th>
-                                        <td>Andrea </td>
-                                        <td>Romero</td>
-                                        <td>SuperAdmin</td>
-                                        <td>patito1@gmail.com</td>
-                                        <td>Activo</td>
-                                        <td class="text-center">
-                                            <a class="" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                              <i class="fa fa-ellipsis-h fa-sm" aria-hidden="true"></i>
-                                            </a>
-                                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                              <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#editarUsuario"></i> Editar</a></li>
-                                              <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#eliminarUsuario"></i> Eliminar</a></li> 
-                                            </ul>                                        
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                        <td>103</td>
-                                        <td>Doble</td>
-                                        <td>Almuerzo</td>
-                                        <td>2</td>
-                                        <td>Reservada</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>Junior Technical Author</td>
-                                        <td>San Francisco</td>
-                                        <td>66</td>
-                                        <td>2009/01/12</td>
-                                        <td>$86,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Cedric Kelly</td>
-                                        <td>Senior Javascript Developer</td>
-                                        <td>Edinburgh</td>
-                                        <td>22</td>
-                                        <td>2012/03/29</td>
-                                        <td>$433,060</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Airi Satou</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>33</td>
-                                        <td>2008/11/28</td>
-                                        <td>$162,700</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Brielle Williamson</td>
-                                        <td>Integration Specialist</td>
-                                        <td>New York</td>
-                                        <td>61</td>
-                                        <td>2012/12/02</td>
-                                        <td>$372,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Herrod Chandler</td>
-                                        <td>Sales Assistant</td>
-                                        <td>San Francisco</td>
-                                        <td>59</td>
-                                        <td>2012/08/06</td>
-                                        <td>$137,500</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rhona Davidson</td>
-                                        <td>Integration Specialist</td>
-                                        <td>Tokyo</td>
-                                        <td>55</td>
-                                        <td>2010/10/14</td>
-                                        <td>$327,900</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Colleen Hurst</td>
-                                        <td>Javascript Developer</td>
-                                        <td>San Francisco</td>
-                                        <td>39</td>
-                                        <td>2009/09/15</td>
-                                        <td>$205,500</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </main>
+                <div class="row d-flex justify-content-center mt-100 mb-100">
+                  <div class="col-lg-6">
+                      <div class="card">
+                          <div class="card-body text-center">
+                              <h4 class="card-title">Últimos Comentarios</h4>
+                          </div>
+                          <div class="comment-widgets">
+                              <!-- Comment Row -->
+                              <div class="d-flex flex-row comment-row m-t-0">
+                                  <div class="p-2"><img src="https://i.imgur.com/Ur43esv.jpg" alt="user" width="50" class="rounded-circle"></div>
+                                  <div class="comment-text w-100">
+                                      <h6 class="font-medium">James Thomas</h6> <span class="m-b-15 d-block">Este lugar es increible. Sin duda regresaría nuevamente </span>
+                                      <div class="comment-footer"> <span class="text-muted float-right">Abril 14, 2021</span> <button type="button" class="btn btn-danger btn-sm">Editar</button> <button type="button" class="btn btn-success btn-sm">Publicar</button> <button type="button" class="btn btn-danger btn-sm">Eliminar</button> </div>
+                                  </div>
+                              </div> <!-- Comment Row -->
+                              <div class="d-flex flex-row comment-row">
+                                  <div class="p-2"><img src="https://i.imgur.com/8RKXAIV.jpg" alt="user" width="50" class="rounded-circle"></div>
+                                  <div class="comment-text active w-100">
+                                      <h6 class="font-medium">Michael Hussey</h6> <span class="m-b-15 d-block">Gracias a todo el equipo de trabajo del hotel por su atención. </span>
+                                      <div class="comment-footer"> <span class="text-muted float-right">Mayo 10, 2021</span> <button type="button" class="btn btn-danger btn-sm">Editar</button> <button type="button" class="btn btn-success btn-sm">Publicar</button> <button type="button" class="btn btn-danger btn-sm">Eliminar</button> </div>
+                                  </div>
+                              </div> <!-- Comment Row -->
+                              <div class="d-flex flex-row comment-row">
+                                  <div class="p-2"><img src="https://i.imgur.com/J6l19aF.jpg" alt="user" width="50" class="rounded-circle"></div>
+                                  <div class="comment-text w-100">
+                                      <h6 class="font-medium">Johnathan Doeting</h6> <span class="m-b-15 d-block">El orden y limpieza de las habitaciones es demasiado buena.. </span>
+                                      <div class="comment-footer"> <span class="text-muted float-right">Augosto 1, 2021</span> <button type="button" class="btn btn-danger btn-sm">Editar</button> <button type="button" class="btn btn-success btn-sm">Publicar</button> <button type="button" class="btn btn-danger btn-sm">Eliminar</button> </div>
+                                  </div>
+                              </div>
+                          </div> <!-- Card -->
+                      </div>
+                  </div>
+              </div>
                 <!--aqui finalizan los cuadros de dashboard-->
 
                 <footer class="py-4 bg-light mt-auto">
@@ -247,11 +152,11 @@
 
       <!--================Inicio modales =================-->
       <!--================Agregar habitación=================-->
-      <div class="modal fade bd-example-modal-lg" id="agregarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade bd-example-modal-lg" id="agregarHabitacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Agregar Habitación</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -262,48 +167,59 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <!--<label class="form-label" for="id_habitacion"><h5>Numero Habitacion</h5></label>-->
-                        <input type="text" name="first_name" id="id_usuario" placeholder="ID Usuario" onfocus="this.placeholder = ''"
-                          onblur="this.placeholder = 'ID Usuario'" required class="single-input">
+                        <input type="text" name="first_name" id="id_habitacion" placeholder="Numero Habitacion" onfocus="this.placeholder = ''"
+                          onblur="this.placeholder = 'Numero Habitacion'" required class="single-input">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <!--<label class="form-label" for="tipo_habitacion"><h5>Tipo Habitacion</h5></label>-->
                         <div class="default-select" >
-                          <select style="display: none" id="tipo_usuario" aria-placeholder="Tipo de Usuario">
-                            <option value="1">SuperAdmin</option>
-                            <option value="2">Admin</option>
-                          
+                          <select style="display: none" id="tipo_habitacion">
+                            <option value="1">Sencilla</option>
+                            <option value="2">Doble</option>
+                            <option value="3">Romantica</option>
+                            <option value="4">Economica</option>
                           </select>
+                          <div class="nice-select" tabindex="0"><span class="current">Tipo habitacion</span>
+                            <ul class="list">
+                              <li data-value="1" class="option selected focus">Sencilla</li>
+                              <li data-value="2" class="option">Doble</li>
+                              <li data-value="3" class="option">Romantica</li>
+                              <li data-value="4" class="option">Economica</li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <!--<label class="form-label" for="cant_huespedes"><h5>Cantidad Personas</h5></label>-->
-                        <input type="text" name="last_name" id="id_nombre" placeholder="Nombre" onfocus="this.placeholder = ''"
-                          onblur="this.placeholder = 'Nombre'" required class="single-input">
+                        <input type="text" name="last_name" id="cant_huespedes" placeholder="Cantidad Personas" onfocus="this.placeholder = ''"
+                          onblur="this.placeholder = 'Cantidad Personas'" required class="single-input">
                       </div>
                     </div>              
                     <div class="col-md-6">
                       <div class="form-group">
                         <!--<label class="form-label" for="precio_habitacion"><h5>Precio</h5></label>-->
-                        <input type="text" id="id_apellido" placeholder="Apellido" onfocus="this.placeholder = ''"
-                          onblur="this.placeholder = 'Apellido'" required class="single-input">
+                        <input type="text" id="precio_habitacion" placeholder="Precio" onfocus="this.placeholder = ''"
+                          onblur="this.placeholder = 'Precio'" required class="single-input">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <!--<label class="form-label" for="status_habitacion"><h5>Status</h5></label>-->
                         <div class="default-select">
-                          <input type="text" id="id_correo" placeholder="Correo" onfocus="this.placeholder = ''"
-                            onblur="this.placeholder = 'Correo'" required class="single-input">
+                          <select style="display: none" id="status_habitacion">
+                            <option value="1">Disponible</option>
+                            <option value="2">Reservada</option>
+                            <option value="3">Inactiva</option>
                           </select>
-                        <div class="nice-select" tabindex="0"><span class="current">Estado</span>
+                          <div class="nice-select" tabindex="0"><span class="current">Status</span>
                             <ul class="list">
-                              <li data-value="1" class="option selected focus">Activo</li>
-                              <li data-value="2" class="option">Inactivo</li>
-                              
+                              <li data-value="1" class="option selected focus">Disponible</li>
+                              <li data-value="2" class="option">Reservada</li>
+                              <li data-value="3" class="option">Inactiva</li>
                             </ul>
                           </div>
                         </div>
@@ -321,11 +237,11 @@
         <!--================Fin Agregar habitación===============-->
 
         <!--================Editar habitación=================-->
-        <div class="modal fade bd-example-modal-lg" id="editarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="editarHabitacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Editar Habitación</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -337,23 +253,25 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <!--<label class="form-label" for="id_habitacion"><h5>Numero Habitacion</h5></label>-->
-                            <input type="text" name="first_name" id="id_user" value="ID Usuario" required disabled class="single-input">
+                            <input type="text" name="first_name" id="id_habitacion" value="101" required disabled class="single-input">
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
                             <!--<label class="form-label" for="tipo_habitacion"><h5>Tipo Habitacion</h5></label>-->
                             <div class="default-select" >
-                              <select style="display: none" id="tipo_User">
-                                <option value="1">SuperAdmin</option>
-                                <option value="2">Admin</option>
-                                
+                              <select style="display: none" id="tipo_habitacion">
+                                <option value="1">Sencilla</option>
+                                <option value="2">Doble</option>
+                                <option value="3">Romantica</option>
+                                <option value="4">Economica</option>
                               </select>
-                              <div class="nice-select" tabindex="0"><span class="current">Tipo Usuario</span>
+                              <div class="nice-select" tabindex="0"><span class="current">Tipo habitacion</span>
                                 <ul class="list">
-                                  <li data-value="1" class="option selected focus">SuperAdmin</li>
-                                  <li data-value="2" class="option">Admin</li>
-                                
+                                  <li data-value="1" class="option selected focus">Sencilla</li>
+                                  <li data-value="2" class="option">Doble</li>
+                                  <li data-value="3" class="option">Romantica</li>
+                                  <li data-value="4" class="option">Economica</li>
                                 </ul>
                               </div>
                             </div>
@@ -362,15 +280,15 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <!--<label class="form-label" for="cant_huespedes"><h5>Cantidad Personas</h5></label>-->
-                            <input type="text" name="last_name" id="id_nombre" placeholder="Nombre" onfocus="this.placeholder = ''"
-                              onblur="this.placeholder = 'Nombre'" required class="single-input">
+                            <input type="text" name="last_name" id="cant_huespedes" placeholder="Cantidad Personas" onfocus="this.placeholder = ''"
+                              onblur="this.placeholder = 'Cantidad Personas'" required class="single-input">
                           </div>
                         </div>              
                         <div class="col-md-6">
                           <div class="form-group">
                             <!--<label class="form-label" for="precio_habitacion"><h5>Precio</h5></label>-->
-                            <input type="text" id="apellido" placeholder="Apellido" onfocus="this.placeholder = ''"
-                              onblur="this.placeholder = 'Apellido'" required class="single-input">
+                            <input type="text" id="precio_habitacion" placeholder="Precio" onfocus="this.placeholder = ''"
+                              onblur="this.placeholder = 'Precio'" required class="single-input">
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -382,10 +300,11 @@
                                 <option value="2">Reservada</option>
                                 <option value="3">Inactiva</option>
                               </select>
-                              <div class="nice-select" tabindex="0"><span class="current">Estado</span>
+                              <div class="nice-select" tabindex="0"><span class="current">Status</span>
                                 <ul class="list">
-                                  <li data-value="1" class="option selected focus">Activo</li>
-                                  <li data-value="2" class="option">Inactivo</li>
+                                  <li data-value="1" class="option selected focus">Disponible</li>
+                                  <li data-value="2" class="option">Reservada</li>
+                                  <li data-value="3" class="option">Inactiva</li>
                                 </ul>
                               </div>
                             </div>
@@ -403,19 +322,19 @@
         <!--================Fin Editar habitación=================-->
         
         <!--================Eliminar habitación=================-->
-        <div class="modal fade" id="eliminarUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="eliminarHabitacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Habitación</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
                 <p>
-                  ¿Seguro que desea eliminar el usuario?
+                  ¿Seguro que desea eliminar la habitación?
                 </p>
               </div>
               <div class="modal-footer">
@@ -426,6 +345,7 @@
           </div>
         </div>
         <!--================Fin Eliminar habitación=================-->
+
         <!--================Fin modales =================-->
        
 
