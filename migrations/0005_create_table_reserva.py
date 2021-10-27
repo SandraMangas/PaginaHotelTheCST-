@@ -1,6 +1,6 @@
 """
 create table reserva
-date created: 2021-10-21 19:12:07.777638
+date created: 2021-10-27 20:55:39.205743
 """
 
 
@@ -12,6 +12,7 @@ def upgrade(migrator):
         table.date('fecha_ingreso')
         table.date('fecha_salida')
         table.int('cant_personas')
+        table.int('deleted')
 
 
 def downgrade(migrator):
