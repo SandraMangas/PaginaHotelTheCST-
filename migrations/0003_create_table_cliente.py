@@ -1,6 +1,6 @@
 """
 create table cliente
-date created: 2021-10-21 19:12:07.771578
+date created: 2021-10-27 20:55:39.201753
 """
 
 
@@ -10,7 +10,6 @@ def upgrade(migrator):
         table.text('telefono')
         table.text('email')
         table.text('direccion')
-        table.int('genero')
 
 
 def downgrade(migrator):

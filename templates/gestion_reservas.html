@@ -105,7 +105,7 @@
                                     <h3 class="typo-list">Listado reservas</h3>
                                 </div>
                                 <div class="col-lg-2 col-md-2 text-right">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarHuesped">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarReserva">
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div>
@@ -115,37 +115,37 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th>Usuario</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Telefono</th>
-                                        <th>Email</th>
-                                        <th>Direccion</th>
+                                        <th>Id</th>
+                                        <th>Habitación</th>
+                                        <th>Cliente</th>
+                                        <th>Ingreso</th>
+                                        <th>Salida</th>
+                                        <th>No. Personas</th>
                                         <th>Estado</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Usuario</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Telefono</th>
-                                        <th>Email</th>
-                                        <th>Direccion</th>
+                                        <th>Id</th>
+                                        <th>Habitación</th>
+                                        <th>Cliente</th>
+                                        <th>Ingreso</th>
+                                        <th>Salida</th>
+                                        <th>No. Personas</th>
                                         <th>Estado</th>
                                         <th>Opciones</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
                                     <tr>
-                                        <td>username</td>
-                                        <td>Pedro</td>
-                                        <td>Perez</td>
-                                        <td>123456</td>
-                                        <td>pperez@micorreo.com</td>
-                                        <td>calle 1223</td>
-                                        <td>Activo</td>
+                                        <td>789</td>
+                                        <td>105</td>
+                                        <td>Pedro Perez</td>
+                                        <td>10/10/21</td>
+                                        <td>15/10/21</td>
+                                        <td>4</td>
+                                        <td>Cancelada</td>
                                         <td class="text-center">
                                             <a class="" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                                                 aria-expanded="false">
@@ -153,38 +153,38 @@
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                                 <li><a class="dropdown-item" href="#!" data-toggle="modal"
-                                                        data-target="#editarHuesped">Editar</a></li>
+                                                        data-target="#editarReserva">Editar</a></li>
                                                 <li><a class="dropdown-item" href="#!" data-toggle="modal"
-                                                        data-target="#eliminarHuesped">Eliminar</a></li>
+                                                        data-target="#eliminarReserva">Eliminar</a></li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>username</td>
-                                        <td>Pedro</td>
-                                        <td>Perez</td>
-                                        <td>123456</td>
-                                        <td>pperez@micorreo.com</td>
-                                        <td>calle 1223</td>
-                                        <td>Activo</td>
+                                        <td>789</td>
+                                        <td>105</td>
+                                        <td>Pedro Perez</td>
+                                        <td>10/10/21</td>
+                                        <td>15/10/21</td>
+                                        <td>4</td>
+                                        <td>Pagada</td>
                                         <td class="text-center">
                                             <a class="" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fa fa-ellipsis-h fa-sm" aria-hidden="true"></i>
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#editarHuesped">Editar</a></li>
-                                                <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#eliminarHuesped">Eliminar</a></li>
+                                                <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#editarReserva">Editar</a></li>
+                                                <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#eliminarReserva">Eliminar</a></li>
                                             </ul>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>username</td>
-                                        <td>Pedro</td>
-                                        <td>Perez</td>
-                                        <td>123456</td>
-                                        <td>pperez@micorreo.com</td>
-                                        <td>calle 1223</td>
-                                        <td>Activo</td>
+                                        <td>789</td>
+                                        <td>105</td>
+                                        <td>Pedro Perez</td>
+                                        <td>10/10/21</td>
+                                        <td>15/10/21</td>
+                                        <td>4</td>
+                                        <td>Reservada</td>
                                         <td>...</td>
                                     </tr>
                                     <tr>
@@ -259,12 +259,12 @@
 
         <!--================Inicio modales =================-->
         <!--================Agregar habitación=================-->
-        <div class="modal fade bd-example-modal-lg" id="agregarHuesped" tabindex="-1" role="dialog"
+        <div class="modal fade bd-example-modal-lg" id="agregarReserva" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agregar Huesped</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar Reserva</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -272,21 +272,16 @@
                     <div class="modal-body">
                         <form action="#" class="mt-2">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" name="username" id="username" placeholder="Nombre de usuario"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre de usuario'"
-                                            required class="single-input">
-                                    </div>
-                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="nombre_usuario"><h6>Nombre</h6></label>
                                         <input type="text" name="nombre_usuario" id="nombre_usuario" placeholder="Nombre"
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre'" required class="single-input">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="apellido_usuario"><h6>Apellido</h6></label>
                                         <input type="text" name="apellido_usuario" id="apellido_usuario" placeholder="Apellido"
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = 'Apellido'"
                                             required class="single-input">
@@ -294,6 +289,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="telefono_usuario"><h6>Telefono</h6></label>
                                         <input type="text" name="telefono_usuario" id="telefono_usuario" placeholder="Telefono"
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = 'Telefono'" required
                                             class="single-input">
@@ -301,30 +297,65 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="email_usuario"><h6>E-mail</h6></label>
                                         <input type="email" name="email_usuario" id="email_usuario" placeholder="E-mail"
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = 'E-mail'" required class="single-input">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="direccion_usuario"><h6>Dirección</h6></label>
                                         <input type="text" name="direccion_usuario" id="direccion_usuario" placeholder="Direccion"
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = 'Direccion'" required class="single-input">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label class="form-label" for="tipo_habitacion">
+                                            <h6>Tipo Habitacion</h6>
+                                        </label>
                                         <div class="default-select">
-                                            <select style="display: none" id="status_habitacion">
-                                                <option value="1">Activo</option>
-                                                <option value="2">Inactivo</option>
+                                            <select style="display: none" id="tipo_habitacion">
+                                                <option value="1">Sencilla</option>
+                                                <option value="2">Doble</option>
+                                                <option value="3">Romantica</option>
+                                                <option value="4">Economica</option>
                                             </select>
-                                            <div class="nice-select" tabindex="0"><span class="current">Estado</span>
+                                            <div class="nice-select" tabindex="0"><span class="current">Tipo habitacion</span>
                                                 <ul class="list">
-                                                    <li data-value="1" class="option selected focus">Activo</li>
-                                                    <li data-value="2" class="option">Inactivo</li>
+                                                    <li data-value="1" class="option selected focus">Sencilla</li>
+                                                    <li data-value="2" class="option">Doble</li>
+                                                    <li data-value="3" class="option">Romantica</li>
+                                                    <li data-value="4" class="option">Economica</li>
                                                 </ul>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="check_in">
+                                            <h6>Fecha Llegada</h6>
+                                        </label>
+                                        <input type="date" name="check_in" id="check_in" required class="single-input">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="check_out">
+                                            <h6>Fecha Salida</h6>
+                                        </label>
+                                        <input type="date" name="check_out" id="check_out" required class="single-input">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="cant_huespedes">
+                                            <h6>Cantidad de Personas</h6>
+                                        </label>
+                                        <input type="text" name="cant_huespedes" id="cant_huespedes" placeholder="Cantidad de Personas"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cantidad de Personas'" required
+                                            class="single-input">
                                     </div>
                                 </div>
                             </div>
@@ -340,12 +371,12 @@
         <!--================Fin Agregar habitación===============-->
         
         <!--================Editar habitación=================-->
-        <div class="modal fade bd-example-modal-lg" id="editarHuesped" tabindex="-1" role="dialog"
+        <div class="modal fade bd-example-modal-lg" id="editarReserva" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Editar Huesped</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Editar Reserva</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -353,59 +384,111 @@
                     <div class="modal-body">
                         <form action="#" class="mt-2">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" value="usename" name="username" id="username" placeholder="Nombre de usuario"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre de usuario'" required disabled class="single-input">
+                                        <label for="id_reserva"><h6>No. Reserva</h6></label>
+                                        <input type="text" value="123456" name="id_reserva" id="id_reserva" required disabled class="single-input">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="id_habitacion"><h6>No. Habitacion</h6></label>
+                                        <input type="text" name="id_habitacion" id="id_habitacion" placeholder="No. Habitacion"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'No. Habitacion'" required class="single-input">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nombre_usuario">
+                                            <h6>Nombre</h6>
+                                        </label>
                                         <input type="text" name="nombre_usuario" id="nombre_usuario" placeholder="Nombre"
                                             onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre'" required class="single-input">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="apellido_usuario">
+                                            <h6>Apellido</h6>
+                                        </label>
                                         <input type="text" name="apellido_usuario" id="apellido_usuario" placeholder="Apellido"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Apellido'" required
-                                            class="single-input">
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Apellido'" required class="single-input">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="telefono_usuario">
+                                            <h6>Telefono</h6>
+                                        </label>
                                         <input type="text" name="telefono_usuario" id="telefono_usuario" placeholder="Telefono"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Telefono'" required
-                                            class="single-input">
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Telefono'" required class="single-input">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="email" name="email_usuario" id="email_usuario" placeholder="E-mail"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'E-mail'" required class="single-input">
+                                        <label for="email_usuario">
+                                            <h6>E-mail</h6>
+                                        </label>
+                                        <input type="email" name="email_usuario" id="email_usuario" placeholder="E-mail" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'E-mail'" required class="single-input">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="direccion_usuario">
+                                            <h6>Dirección</h6>
+                                        </label>
                                         <input type="text" name="direccion_usuario" id="direccion_usuario" placeholder="Direccion"
-                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Direccion'" required
-                                            class="single-input">
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Direccion'" required class="single-input">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label class="form-label" for="tipo_habitacion">
+                                            <h6>Tipo Habitacion</h6>
+                                        </label>
                                         <div class="default-select">
-                                            <select style="display: none" id="status_habitacion">
-                                                <option value="1">Activo</option>
-                                                <option value="2">Inactivo</option>
+                                            <select style="display: none" id="tipo_habitacion">
+                                                <option value="1">Sencilla</option>
+                                                <option value="2">Doble</option>
+                                                <option value="3">Romantica</option>
+                                                <option value="4">Economica</option>
                                             </select>
-                                            <div class="nice-select" tabindex="0"><span class="current">Estado</span>
+                                            <div class="nice-select" tabindex="0"><span class="current">Tipo habitacion</span>
                                                 <ul class="list">
-                                                    <li data-value="1" class="option selected focus">Activo</li>
-                                                    <li data-value="2" class="option">Inactivo</li>
+                                                    <li data-value="1" class="option selected focus">Sencilla</li>
+                                                    <li data-value="2" class="option">Doble</li>
+                                                    <li data-value="3" class="option">Romantica</li>
+                                                    <li data-value="4" class="option">Economica</li>
                                                 </ul>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="check_in">
+                                            <h6>Fecha Llegada</h6>
+                                        </label>
+                                        <input type="date" name="check_in" id="check_in" required class="single-input">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="check_out">
+                                            <h6>Fecha Salida</h6>
+                                        </label>
+                                        <input type="date" name="check_out" id="check_out" required class="single-input">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="cant_huespedes">
+                                            <h6>Cantidad de Personas</h6>
+                                        </label>
+                                        <input type="text" name="cant_huespedes" id="cant_huespedes" placeholder="Cantidad de Personas"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cantidad de Personas'" required
+                                            class="single-input">
                                     </div>
                                 </div>
                             </div>
@@ -421,19 +504,19 @@
         <!--================Fin Editar habitación=================-->
         
         <!--================Eliminar habitación=================-->
-        <div class="modal fade" id="eliminarHuesped" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="eliminarReserva" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Huesped</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Reserva</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <p>
-                            ¿Seguro que desea eliminar el huesped?
+                            ¿Seguro que desea eliminar esta reserva?
                         </p>
                     </div>
                     <div class="modal-footer">

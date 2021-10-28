@@ -1,6 +1,6 @@
 """
 create table calificacion
-date created: 2021-10-21 19:12:07.774569
+date created: 2021-10-27 20:55:39.203748
 """
 
 

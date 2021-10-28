@@ -1,6 +1,6 @@
 """
 create table usuario
-date created: 2021-10-21 19:12:07.767588
+date created: 2021-10-27 20:55:39.199758
 """
 
 
@@ -10,7 +10,8 @@ def upgrade(migrator):
         table.text('password')
         table.text('nombre')
         table.text('apellido')
-        table.int('rol')
+        table.int('tipo_usuario')
+        table.int('deleted')
 
 
 def downgrade(migrator):
