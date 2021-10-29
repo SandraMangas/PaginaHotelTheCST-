@@ -1,7 +1,6 @@
-import re
 from flask import Flask, render_template, request, flash, redirect
 from flask_bcrypt import Bcrypt
-from app2 import habitacion
+from datetime import datetime
 from config import dev
 from models import *
 
@@ -54,7 +53,9 @@ def ingreso():
 def registro():
     return render_template("/registro.html")
 
+# -------------------------------------
 # RUTAS DE LA APLICACION - VISTAS ADMIN
+# -------------------------------------
 
 # Ruta inicio admin
 @app.route('/admin')
@@ -67,10 +68,12 @@ def gestion_usuarios():
     lista_usuarios = list(Usuario.select())
     return render_template("/gestion_user.html", lista_usuarios=lista_usuarios)
 
-# Ruta gestion huespedes
+# Ruta gestion huespedes + Listar huespedes
 @app.route('/gestion_huespedes')
 def gestion_huespedes():
-    return render_template("/gestion_huespedes.html")
+    lista_huespedes = list(Cliente.select(Cliente, Usuario).join(Usuario))
+
+    return render_template("/gestion_huespedes.html", lista_huespedes=lista_huespedes)
 
 # Ruta gestion habitaciones + Listar habitaciones
 @app.route('/gestion_habitaciones', methods=["GET","POST"])
@@ -79,10 +82,12 @@ def gestion_habitaciones():
 
     return render_template("/gestion_hab.html", lista_habitaciones=lista_habitaciones)
 
-# Ruta gestion reservas
+# Ruta gestion reservas + Listar reservas
 @app.route('/gestion_reservas')
 def gestion_reservas():
-    return render_template("/gestion_reservas.html")
+    lista_reservas = list(Reserva.select(Reserva, Usuario).join(Usuario))
+
+    return render_template("/gestion_reservas.html", lista_reservas=lista_reservas)
 
 # Ruta gestion comentarios
 @app.route('/gestion_comentarios')
@@ -90,7 +95,7 @@ def gestion_comentarios():
     return render_template("/gestion_comentarios.html")
 
 # ----------------------------------------------
-# FUNCIONES DE LA APLICACION
+# FUNCIONES DE LA APLICACION - DASHBOARD
 # ----------------------------------------------
 
 # Crear habitaciones
@@ -105,6 +110,64 @@ def gestion_habitaciones_save():
     habitacion, creado = Habitacion.get_or_create(id=id_hab, precio=precio_hab, tipo_habitacion=tipo_hab, cant_personas=cant_personas, estado=estado_hab, deleted=1)
 
     return redirect("/gestion_habitaciones")
+
+# Crear Usuarios
+@app.route('/gestion_usuarios/save', methods=["GET","POST"])
+def gestion_usuarios_save():
+    username = request.form["username"]
+    password = request.form["password"]
+    nombre = request.form["id_nombre"]
+    apellido = request.form["id_apellido"]
+    tipo_usuario = int(request.form["tipo_usuario"])
+    estado = int(request.form["estado"])
+
+    usuario, creado = Usuario.get_or_create(username =username, password=bcrypt.generate_password_hash(password), nombre=nombre, apellido=apellido, tipo_usuario=tipo_usuario, deleted=estado)
+
+    return redirect("/gestion_usuarios")
+
+# Crear huespedes
+@app.route('/gestion_huespedes/save', methods=["GET","POST"])
+def gestion_huespedes_save():
+    username = request.form["username"]
+    password = request.form["password"]
+    nombre = request.form["nombre_usuario"]
+    apellido = request.form["apellido_usuario"]
+    telefono = request.form["telefono_usuario"]
+    email = request.form["email_usuario"]
+    direccion = request.form["direccion_usuario"]
+    tipo_usuario = 2
+    estado = int(request.form["status_usuario"])
+
+    usuario, creado = Usuario.get_or_create(username =username, password=bcrypt.generate_password_hash(password), nombre=nombre, apellido=apellido, tipo_usuario=tipo_usuario, deleted=estado)
+
+    cliente, creado = Cliente.get_or_create(usuario=usuario, telefono=telefono, email=email, direccion=direccion)
+
+    return redirect("/gestion_huespedes")
+
+# Crear Reservas
+@app.route('/gestion_reservas/save', methods=["GET","POST"])
+def gestion_reservas_save():
+    # Traer el username del usuario que registra
+    username = "admin1" #Viene del login
+    nombre = request.form["nombre_usuario"]
+    apellido = request.form["apellido_usuario"]
+    telefono = request.form["telefono_usuario"]
+    email = request.form["email_usuario"]
+    direccion = request.form["direccion_usuario"]
+    tipo_hab = int(request.form["tipo_habitacion"])
+    fecha_llegada = request.form["check_in"].split("/")
+    fecha_salida = request.form["check_out"].split("/")
+    cant_personas = int(request.form["cant_huespedes"])
+    
+    habitacion = list(Habitacion.select().where(Habitacion.tipo_habitacion==tipo_hab))[0]
+
+    reserva, creado = Reserva.get_or_create(habitacion=habitacion, usuario=username, fecha_ingreso=datetime.datetime(int(fecha_llegada[0]), int(fecha_llegada[1]), int(fecha_llegada[2])), fecha_salida=datetime.datetime(int(fecha_salida[0]), int(fecha_salida[1]), int(fecha_salida[2])), cant_personas=cant_personas, deleted=1)
+
+# Crear Comentarios
+
+# Editar usuarios
+
+# Editar huespedes
 
 # Editar habitaciones
 @app.route('/gestion_habitaciones/update', methods=["POST"])
@@ -124,21 +187,13 @@ def gestion_habitaciones_update():
 
     return redirect("/gestion_habitaciones")
 
-# Crear Usuarios
-@app.route('/gestion_usuarios/save', methods=["GET","POST"])
-def gestion_usuarios_save():
-    username = request.form["username"]
-    password = request.form["password"]
-    nombre = request.form["id_nombre"]
-    apellido = request.form["id_apellido"]
-    tipo_usuario = int(request.form["tipo_usuario"])
-    estado = int(request.form["estado"])
+# Editar reservas
 
-    usuario, creado = Usuario.get_or_create(username =username, password=bcrypt.generate_password_hash(password), nombre=nombre, apellido=apellido, tipo_usuario=tipo_usuario, deleted=estado)
+# Editar comentarios
 
-
-    return redirect("/gestion_usuarios")
-
+# ----------------------------------------------
+# FUNCIONES DE LA APLICACION - PAGINA CLIENTE
+# ----------------------------------------------
 
 # Registrar usuario
 @app.route('/registrarusuarios', methods=['POST', 'GET'] )

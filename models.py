@@ -9,7 +9,8 @@ class Usuario(db.Model):
   nombre = TextField()
   apellido = TextField()
   tipo_usuario = IntegerField() # 0=superadmin, 1=admin, 2=cliente
-  deleted = IntegerField() # 0=deleted(hide), 1=active
+  estado = IntegerField() # 0=inactivo, 1=active
+  #deleted = IntegerField() # 0=deleted(hide), 1=active
 
 
 class Cliente(db.Model):
@@ -25,7 +26,7 @@ class Habitacion(db.Model):
   tipo_habitacion = IntegerField() # 0=economica, 1=sencilla, 2=doble, 3=romantica
   cant_personas = IntegerField()
   estado = IntegerField() # 0=inactiva, 1=disponible, 2=reservada
-  deleted = IntegerField() # 0=deleted(hide), 1=active
+  #deleted = IntegerField() # 0=deleted(hide), 1=active
 
 class Calificacion(db.Model):
   id = AutoField()
@@ -37,11 +38,16 @@ class Calificacion(db.Model):
 class Reserva(db.Model):
   id = AutoField()
   habitacion = ForeignKeyField(Habitacion, backref="reservas")
-  usuario = ForeignKeyField(Usuario, backref="reservas")
-  fecha_ingreso = DateField() #Format??
-  fecha_salida = DateField() #Format??
+  usuario = TextField() #Usuario de quien realiza reserva, puede ser cliente o admin
+  nombre_cliente = TextField()
+  apellido_cliente = TextField()
+  telefono_cliente = TextField()
+  email_cliente = TextField()
+  direccion_cliente = TextField()
+  fecha_ingreso = DateField() 
+  fecha_salida = DateField() 
   cant_personas = IntegerField()
-  # estado = IntegerField() # 0=cancelada, 1=reservada, 2=disponible
-  deleted = IntegerField() # 0=deleted(hide), 1=active
+  estado = IntegerField() # 0=cancelada, 1=confirmada, 2=pagada
+  #deleted = IntegerField() # 0=cancelada, 1=confirmada, 2=pagada
 
 

@@ -1,13 +1,13 @@
 """
 create table calificacion
-date created: 2021-10-27 20:55:39.203748
+date created: 2021-10-29 05:40:20.494641
 """
 
 
 def upgrade(migrator):
     with migrator.create_table('calificacion') as table:
         table.primary_key('id')
-        table.foreign_key('AUTO', 'habitacion_id', on_delete=None, on_update=None, references='habitacion.id')
+        table.foreign_key('TEXT', 'habitacion_id', on_delete=None, on_update=None, references='habitacion.id')
         table.foreign_key('TEXT', 'cliente_id', on_delete=None, on_update=None, references='cliente.usuario_id')
         table.text('comentario')
         table.int('calificacion')

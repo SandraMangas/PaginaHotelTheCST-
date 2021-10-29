@@ -22,6 +22,7 @@ Admin1
             <table id="datatablesSimple">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Usuario</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
@@ -34,6 +35,7 @@ Admin1
                 </thead>
                 <tfoot>
                     <tr>
+                        <th>#</th>
                         <th>Usuario</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
@@ -45,14 +47,24 @@ Admin1
                     </tr>
                 </tfoot>
                 <tbody>
+                    {% for cliente in lista_huespedes %}
                     <tr>
-                        <td>username</td>
-                        <td>Pedro</td>
-                        <td>Perez</td>
-                        <td>123456</td>
-                        <td>pperez@micorreo.com</td>
-                        <td>calle 1223</td>
-                        <td>Activo</td>
+                        <td>{{ loop.index-1 }}</td>
+                        <td>{{cliente.usuario.username}}</td>
+                        <td>{{cliente.usuario.nombre}}</td>
+                        <td>{{cliente.usuario.apellido}}</td>
+                        <td>{{cliente.telefono}}</td>
+                        <td>{{cliente.email}}</td>
+                        <td>{{cliente.direccion}}</td>
+                        <td>
+                            {% if cliente.usuario.deleted == 0%}
+                            Inactivo
+                            {% elif cliente.usuario.deleted == 1%}
+                            Activo
+                            {% else %}
+                            Error
+                            {% endif %}
+                        </td>
                         <td class="text-center">
                             <a class="" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -66,85 +78,7 @@ Admin1
                             </ul>
                         </td>
                     </tr>
-                    <tr>
-                        <td>username</td>
-                        <td>Pedro</td>
-                        <td>Perez</td>
-                        <td>123456</td>
-                        <td>pperez@micorreo.com</td>
-                        <td>calle 1223</td>
-                        <td>Activo</td>
-                        <td class="text-center">
-                            <a class="" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="fa fa-ellipsis-h fa-sm" aria-hidden="true"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!" data-toggle="modal"
-                                        data-target="#editarHuesped">Editar</a></li>
-                                <li><a class="dropdown-item" href="#!" data-toggle="modal"
-                                        data-target="#eliminarHuesped">Eliminar</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>username</td>
-                        <td>Pedro</td>
-                        <td>Perez</td>
-                        <td>123456</td>
-                        <td>pperez@micorreo.com</td>
-                        <td>calle 1223</td>
-                        <td>Activo</td>
-                        <td>...</td>
-                    </tr>
-                    <tr>
-                        <td>Cedric Kelly</td>
-                        <td>Senior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>22</td>
-                        <td>2012/03/29</td>
-                        <td>$433,060</td>
-                    </tr>
-                    <tr>
-                        <td>Airi Satou</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>33</td>
-                        <td>2008/11/28</td>
-                        <td>$162,700</td>
-                    </tr>
-                    <tr>
-                        <td>Brielle Williamson</td>
-                        <td>Integration Specialist</td>
-                        <td>New York</td>
-                        <td>61</td>
-                        <td>2012/12/02</td>
-                        <td>$372,000</td>
-                    </tr>
-                    <tr>
-                        <td>Herrod Chandler</td>
-                        <td>Sales Assistant</td>
-                        <td>San Francisco</td>
-                        <td>59</td>
-                        <td>2012/08/06</td>
-                        <td>$137,500</td>
-                    </tr>
-                    <tr>
-                        <td>Rhona Davidson</td>
-                        <td>Integration Specialist</td>
-                        <td>Tokyo</td>
-                        <td>55</td>
-                        <td>2010/10/14</td>
-                        <td>$327,900</td>
-                    </tr>
-                    <tr>
-                        <td>Colleen Hurst</td>
-                        <td>Javascript Developer</td>
-                        <td>San Francisco</td>
-                        <td>39</td>
-                        <td>2009/09/15</td>
-                        <td>$205,500</td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -158,87 +92,88 @@ Admin1
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Agregar Huesped</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="#" class="mt-2">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="username" id="username" placeholder="Nombre de usuario"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre de usuario'"
-                                        required class="single-input">
+                <form action="/gestion_huespedes/save" method="post" class="mt-2">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar Huesped</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="username" id="username" placeholder="Nombre de usuario"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre de usuario'"
+                                            required class="single-input">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="password" name="password" id="password" placeholder="Contraseña"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contraseña'" required
-                                        class="single-input">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="password" name="password" id="password" placeholder="Contraseña"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Contraseña'" required
+                                            class="single-input">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="nombre_usuario" id="nombre_usuario" placeholder="Nombre"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre'" required
-                                        class="single-input">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="nombre_usuario" id="nombre_usuario" placeholder="Nombre"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nombre'" required
+                                            class="single-input">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="apellido_usuario" id="apellido_usuario" placeholder="Apellido"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Apellido'" required
-                                        class="single-input">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="apellido_usuario" id="apellido_usuario" placeholder="Apellido"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Apellido'" required
+                                            class="single-input">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="telefono_usuario" id="telefono_usuario" placeholder="Telefono"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Telefono'" required
-                                        class="single-input">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="telefono_usuario" id="telefono_usuario" placeholder="Telefono"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Telefono'" required
+                                            class="single-input">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" name="email_usuario" id="email_usuario" placeholder="E-mail"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'E-mail'" required
-                                        class="single-input">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" name="email_usuario" id="email_usuario" placeholder="E-mail"
+                                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'E-mail'" required
+                                            class="single-input">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="direccion_usuario" id="direccion_usuario"
-                                        placeholder="Direccion" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Direccion'" required class="single-input">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="direccion_usuario" id="direccion_usuario"
+                                            placeholder="Direccion" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Direccion'" required class="single-input">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="default-select">
-                                        <select style="display: none" id="status_habitacion">
-                                            <option value="1">Activo</option>
-                                            <option value="2">Inactivo</option>
-                                        </select>
-                                        <div class="nice-select" tabindex="0"><span class="current">Estado</span>
-                                            <ul class="list">
-                                                <li data-value="1" class="option selected focus">Activo</li>
-                                                <li data-value="2" class="option">Inactivo</li>
-                                            </ul>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="default-select">
+                                            <select style="display: none" id="status_usuario" name="status_usuario">
+                                                <option value="1">Activo</option>
+                                                <option value="0">Inactivo</option>
+                                            </select>
+                                            <div class="nice-select" tabindex="0"><span class="current">Estado</span>
+                                                <ul class="list">
+                                                    <li data-value="1" class="option selected focus">Activo</li>
+                                                    <li data-value="0" class="option">Inactivo</li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Agregar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

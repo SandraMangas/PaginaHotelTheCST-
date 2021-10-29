@@ -1,6 +1,6 @@
 """
 create table cliente
-date created: 2021-10-27 20:55:39.201753
+date created: 2021-10-29 05:40:20.492643
 """
 
 
