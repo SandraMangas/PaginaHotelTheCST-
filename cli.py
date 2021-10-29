@@ -12,7 +12,7 @@ def crear_datos_iniciales():
   u2, creado = Usuario.get_or_create(username ="dmartinez", password="123456", nombre="Diego", apellido="Gutierrez", tipo_usuario=1, deleted=1)
   u3, creado = Usuario.get_or_create(username ="smangas", password="123456", nombre="Sandra", apellido="Mangas", tipo_usuario=2, deleted=1)
   u4, creado = Usuario.get_or_create(username ="ajimenez", password="123456", nombre="Angel", apellido="Jimenez", tipo_usuario=2, deleted=1)
-  u5, creado = Usuario.get_or_create(username ="test1", password=bcrypt.generate_password_hash("123456"), nombre="Test", apellido="Test", tipo_usuario=0, deleted=1)
+  # u5, creado = Usuario.get_or_create(username ="test1", password=bcrypt.generate_password_hash("123456"), nombre="Test", apellido="Test", tipo_usuario=0, deleted=1)
 
   # Clientes de ejemplo
   c1, creado = Cliente.get_or_create(usuario=u3, telefono="312547896", email="smangas@uninorte.edu.co", direccion="Calle 123434")
@@ -36,7 +36,7 @@ def crear_datos_iniciales():
 
   buscar = list(Usuario.select().where(Usuario.username=="siadoa"))
 
-  print(buscar[0].password)
+  print(buscar[0].tipo_usuario)
   print(model_to_dict(buscar[0]))
 
 app.cli()

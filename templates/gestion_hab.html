@@ -22,6 +22,7 @@ Admin1
     <table id="datatablesSimple">
       <thead>
         <tr>
+          <th>#</th>
           <th>No. de Habitación</th>
           <th>Tipo Habitación</th>
           <th>Capacidad</th>
@@ -32,6 +33,7 @@ Admin1
       </thead>
       <tfoot>
         <tr>
+          <th>#</th>
           <th>No. de Habitación</th>
           <th>Tipo de habitación</th>
           <th>Capacidad</th>
@@ -41,12 +43,36 @@ Admin1
         </tr>
       </tfoot>
       <tbody>
+        {% for habitacion in lista_habitaciones %}
         <tr>
-          <td>101</td>
-          <td>Sencilla</td>
-          <td>Desayuno</td>
-          <td>1</td>
-          <td>Pendiente</td>
+          <td>{{ loop.index-1 }}</td>
+          <td>{{ habitacion.id }}</td>
+          <td>
+            {% if habitacion.tipo_habitacion ==  0%}
+              Economica
+            {% elif habitacion.tipo_habitacion == 1%}
+              Sencilla
+            {% elif habitacion.tipo_habitacion == 2%}
+              Sencilla
+            {% elif habitacion.tipo_habitacion == 3%}
+              Romantica
+            {% else %}
+              Error
+            {% endif %}
+          </td>
+          <td>{{ habitacion.cant_personas }}</td>
+          <td>
+            {% if habitacion.estado == 0%}
+              Inactiva
+            {% elif habitacion.estado == 1%}
+              Disponible
+            {% elif habitacion.estado == 2%}
+              Reservada
+            {% else %}
+              Error
+            {% endif %}
+          </td>
+          <td>${{ habitacion.precio }}</td>
           <td class="text-center">
             <a class="" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-ellipsis-h fa-sm" aria-hidden="true"></i>
@@ -59,70 +85,7 @@ Admin1
             </ul>
           </td>
         </tr>
-        <tr>
-          <td>103</td>
-          <td>Doble</td>
-          <td>Almuerzo</td>
-          <td>2</td>
-          <td>Reservada</td>
-          <td>$170,750</td>
-        </tr>
-        <tr>
-          <td>Ashton Cox</td>
-          <td>Junior Technical Author</td>
-          <td>San Francisco</td>
-          <td>66</td>
-          <td>2009/01/12</td>
-          <td>$86,000</td>
-        </tr>
-        <tr>
-          <td>Cedric Kelly</td>
-          <td>Senior Javascript Developer</td>
-          <td>Edinburgh</td>
-          <td>22</td>
-          <td>2012/03/29</td>
-          <td>$433,060</td>
-        </tr>
-        <tr>
-          <td>Airi Satou</td>
-          <td>Accountant</td>
-          <td>Tokyo</td>
-          <td>33</td>
-          <td>2008/11/28</td>
-          <td>$162,700</td>
-        </tr>
-        <tr>
-          <td>Brielle Williamson</td>
-          <td>Integration Specialist</td>
-          <td>New York</td>
-          <td>61</td>
-          <td>2012/12/02</td>
-          <td>$372,000</td>
-        </tr>
-        <tr>
-          <td>Herrod Chandler</td>
-          <td>Sales Assistant</td>
-          <td>San Francisco</td>
-          <td>59</td>
-          <td>2012/08/06</td>
-          <td>$137,500</td>
-        </tr>
-        <tr>
-          <td>Rhona Davidson</td>
-          <td>Integration Specialist</td>
-          <td>Tokyo</td>
-          <td>55</td>
-          <td>2010/10/14</td>
-          <td>$327,900</td>
-        </tr>
-        <tr>
-          <td>Colleen Hurst</td>
-          <td>Javascript Developer</td>
-          <td>San Francisco</td>
-          <td>39</td>
-          <td>2009/09/15</td>
-          <td>$205,500</td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
@@ -136,84 +99,85 @@ Admin1
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agregar Habitación</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="#" class="mt-2">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="id_habitacion"><h5>Numero Habitacion</h5></label>-->
-                  <input type="text" name="first_name" id="id_habitacion" placeholder="Numero Habitacion"
-                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Numero Habitacion'" required
-                    class="single-input">
+        <form action="/gestion_habitaciones/save" method="post" class="mt-2">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Agregar Habitación</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="id_habitacion"><h5>Numero Habitacion</h5></label>-->
+                    <input type="text" name="id_habitacion" id="id_habitacion" placeholder="Numero Habitacion"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Numero Habitacion'" required
+                      class="single-input">
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="tipo_habitacion"><h5>Tipo Habitacion</h5></label>-->
-                  <div class="default-select">
-                    <select style="display: none" id="tipo_habitacion">
-                      <option value="1">Sencilla</option>
-                      <option value="2">Doble</option>
-                      <option value="3">Romantica</option>
-                      <option value="4">Economica</option>
-                    </select>
-                    <div class="nice-select" tabindex="0"><span class="current">Tipo habitacion</span>
-                      <ul class="list">
-                        <li data-value="1" class="option selected focus">Sencilla</li>
-                        <li data-value="2" class="option">Doble</li>
-                        <li data-value="3" class="option">Romantica</li>
-                        <li data-value="4" class="option">Economica</li>
-                      </ul>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="tipo_habitacion"><h5>Tipo Habitacion</h5></label>-->
+                    <div class="default-select">
+                      <select style="display: none" id="tipo_habitacion" name="tipo_habitacion">
+                        <option value="1">Sencilla</option>
+                        <option value="2">Doble</option>
+                        <option value="3">Romantica</option>
+                        <option value="0">Economica</option>
+                      </select>
+                      <div class="nice-select" tabindex="0"><span class="current">Tipo habitacion</span>
+                        <ul class="list">
+                          <li data-value="1" class="option selected focus">Sencilla</li>
+                          <li data-value="2" class="option">Doble</li>
+                          <li data-value="3" class="option">Romantica</li>
+                          <li data-value="0" class="option">Economica</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="cant_huespedes"><h5>Cantidad Personas</h5></label>-->
+                    <input type="text" name="cant_huespedes" id="cant_huespedes" placeholder="Cantidad Personas"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cantidad Personas'" required
+                      class="single-input">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="precio_habitacion"><h5>Precio</h5></label>-->
+                    <input type="text" name="precio_habitacion" id="precio_habitacion" placeholder="Precio" onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Precio'" required class="single-input">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="status_habitacion"><h5>Status</h5></label>-->
+                    <div class="default-select">
+                      <select style="display: none" id="status_habitacion" name="status_habitacion">
+                        <option value="1">Disponible</option>
+                        <option value="2">Reservada</option>
+                        <option value="0">Inactiva</option>
+                      </select>
+                      <div class="nice-select" tabindex="0"><span class="current">Status</span>
+                        <ul class="list">
+                          <li data-value="1" class="option selected focus">Disponible</li>
+                          <li data-value="2" class="option">Reservada</li>
+                          <li data-value="0" class="option">Inactiva</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="cant_huespedes"><h5>Cantidad Personas</h5></label>-->
-                  <input type="text" name="last_name" id="cant_huespedes" placeholder="Cantidad Personas"
-                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cantidad Personas'" required
-                    class="single-input">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="precio_habitacion"><h5>Precio</h5></label>-->
-                  <input type="text" id="precio_habitacion" placeholder="Precio" onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = 'Precio'" required class="single-input">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="status_habitacion"><h5>Status</h5></label>-->
-                  <div class="default-select">
-                    <select style="display: none" id="status_habitacion">
-                      <option value="1">Disponible</option>
-                      <option value="2">Reservada</option>
-                      <option value="3">Inactiva</option>
-                    </select>
-                    <div class="nice-select" tabindex="0"><span class="current">Status</span>
-                      <ul class="list">
-                        <li data-value="1" class="option selected focus">Disponible</li>
-                        <li data-value="2" class="option">Reservada</li>
-                        <li data-value="3" class="option">Inactiva</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Agregar</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Agregar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -224,84 +188,84 @@ Admin1
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Editar Habitación</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-  
-          <form action="#" class="mt-2">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="id_habitacion"><h5>Numero Habitacion</h5></label>-->
-                  <input type="text" name="first_name" id="id_habitacion" value="101" required disabled
-                    class="single-input">
+        <form action="/gestion_habitaciones/update" method="post" class="mt-2">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Editar Habitación</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="id_habitacion"><h5>Numero Habitacion</h5></label>-->
+                    <input type="text" name="id_habitacion_e" id="id_habitacion_e" value="101" required disabled
+                      class="single-input">
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="tipo_habitacion"><h5>Tipo Habitacion</h5></label>-->
-                  <div class="default-select">
-                    <select style="display: none" id="tipo_habitacion">
-                      <option value="1">Sencilla</option>
-                      <option value="2">Doble</option>
-                      <option value="3">Romantica</option>
-                      <option value="4">Economica</option>
-                    </select>
-                    <div class="nice-select" tabindex="0"><span class="current">Tipo habitacion</span>
-                      <ul class="list">
-                        <li data-value="1" class="option selected focus">Sencilla</li>
-                        <li data-value="2" class="option">Doble</li>
-                        <li data-value="3" class="option">Romantica</li>
-                        <li data-value="4" class="option">Economica</li>
-                      </ul>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="tipo_habitacion"><h5>Tipo Habitacion</h5></label>-->
+                    <div class="default-select">
+                      <select style="display: none" id="tipo_habitacion_e" name="tipo_habitacion_e">
+                        <option value="1">Sencilla</option>
+                        <option value="2">Doble</option>
+                        <option value="3">Romantica</option>
+                        <option value="0">Economica</option>
+                      </select>
+                      <div class="nice-select" tabindex="0"><span class="current">Tipo habitacion</span>
+                        <ul class="list">
+                          <li data-value="1" class="option selected focus">Sencilla</li>
+                          <li data-value="2" class="option">Doble</li>
+                          <li data-value="3" class="option">Romantica</li>
+                          <li data-value="0" class="option">Economica</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="cant_huespedes"><h5>Cantidad Personas</h5></label>-->
+                    <input type="text" name="cant_huespedes_e" id="cant_huespedes_e" placeholder="Cantidad Personas"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cantidad Personas'" required
+                      class="single-input">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="precio_habitacion"><h5>Precio</h5></label>-->
+                    <input type="text" id="precio_habitacion_e" name="precio_habitacion_e" placeholder="Precio" onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Precio'" required class="single-input">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="status_habitacion"><h5>Status</h5></label>-->
+                    <div class="default-select">
+                      <select style="display: none" id="status_habitacion_e" name="status_habitacion_e">
+                        <option value="1">Disponible</option>
+                        <option value="2">Reservada</option>
+                        <option value="0">Inactiva</option>
+                      </select>
+                      <div class="nice-select" tabindex="0"><span class="current">Status</span>
+                        <ul class="list">
+                          <li data-value="1" class="option selected focus">Disponible</li>
+                          <li data-value="2" class="option">Reservada</li>
+                          <li data-value="0" class="option">Inactiva</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="cant_huespedes"><h5>Cantidad Personas</h5></label>-->
-                  <input type="text" name="last_name" id="cant_huespedes" placeholder="Cantidad Personas"
-                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cantidad Personas'" required
-                    class="single-input">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="precio_habitacion"><h5>Precio</h5></label>-->
-                  <input type="text" id="precio_habitacion" placeholder="Precio" onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = 'Precio'" required class="single-input">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="status_habitacion"><h5>Status</h5></label>-->
-                  <div class="default-select">
-                    <select style="display: none" id="status_habitacion">
-                      <option value="1">Disponible</option>
-                      <option value="2">Reservada</option>
-                      <option value="3">Inactiva</option>
-                    </select>
-                    <div class="nice-select" tabindex="0"><span class="current">Status</span>
-                      <ul class="list">
-                        <li data-value="1" class="option selected focus">Disponible</li>
-                        <li data-value="2" class="option">Reservada</li>
-                        <li data-value="3" class="option">Inactiva</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Editar</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Editar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

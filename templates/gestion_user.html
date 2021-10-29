@@ -22,11 +22,10 @@ Admin1
       <table id="datatablesSimple">
         <thead>
           <tr>
+            <th>#</th>
             <th>ID de Usuario</th>
-            <th>Password</th>
             <th>Nombres</th>
             <th>Apellidos</th>
-            <th>Correo</th>
             <th>Tipo Usuario</th>
             <th>Estado</th>
             <th>Opciones</th>
@@ -34,101 +33,57 @@ Admin1
         </thead>
         <tfoot>
           <tr>
+            <th>#</th>
             <th>ID de Usuario</th>
-            <th>Password</th>
             <th>Nombres</th>
             <th>Apellidos</th>
-            <th>Correo</th>
             <th>Tipo Usuario</th>
             <th>Estado</th>
             <th>Opciones</th>
           </tr>
         </tfoot>
         <tbody>
-          <tr>
-            <td>adromeroc</td>
-            <th>12345</th>
-            <td>Andrea </td>
-            <td>Romero</td>
-            <td>SuperAdmin</td>
-            <td>patito1@gmail.com</td>
-            <td>Activo</td>
-            <td class="text-center">
-              <a class="" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-ellipsis-h fa-sm" aria-hidden="true"></i>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#editarUsuario"></i> Editar</a>
-                </li>
-                <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#eliminarUsuario"></i>
-                    Eliminar</a></li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td>103</td>
-            <td>Doble</td>
-            <td>Almuerzo</td>
-            <td>2</td>
-            <td>Reservada</td>
-            <td>$170,750</td>
-          </tr>
-          <tr>
-            <td>Ashton Cox</td>
-            <td>Junior Technical Author</td>
-            <td>San Francisco</td>
-            <td>66</td>
-            <td>2009/01/12</td>
-            <td>$86,000</td>
-          </tr>
-          <tr>
-            <td>Cedric Kelly</td>
-            <td>Senior Javascript Developer</td>
-            <td>Edinburgh</td>
-            <td>22</td>
-            <td>2012/03/29</td>
-            <td>$433,060</td>
-          </tr>
-          <tr>
-            <td>Airi Satou</td>
-            <td>Accountant</td>
-            <td>Tokyo</td>
-            <td>33</td>
-            <td>2008/11/28</td>
-            <td>$162,700</td>
-          </tr>
-          <tr>
-            <td>Brielle Williamson</td>
-            <td>Integration Specialist</td>
-            <td>New York</td>
-            <td>61</td>
-            <td>2012/12/02</td>
-            <td>$372,000</td>
-          </tr>
-          <tr>
-            <td>Herrod Chandler</td>
-            <td>Sales Assistant</td>
-            <td>San Francisco</td>
-            <td>59</td>
-            <td>2012/08/06</td>
-            <td>$137,500</td>
-          </tr>
-          <tr>
-            <td>Rhona Davidson</td>
-            <td>Integration Specialist</td>
-            <td>Tokyo</td>
-            <td>55</td>
-            <td>2010/10/14</td>
-            <td>$327,900</td>
-          </tr>
-          <tr>
-            <td>Colleen Hurst</td>
-            <td>Javascript Developer</td>
-            <td>San Francisco</td>
-            <td>39</td>
-            <td>2009/09/15</td>
-            <td>$205,500</td>
-          </tr>
+          {% for usuario in lista_usuarios %}
+            {% if usuario.tipo_usuario == 0 or usuario.tipo_usuario == 1%}
+            <tr>
+              <th>{{ loop.index-1 }}</th>
+              <td>{{usuario.username}}</td>
+              <td>{{usuario.nombre}} </td>
+              <td>{{usuario.apellido}}</td>
+              <td>
+                {% if usuario.tipo_usuario == 0%}
+                Super Administrador
+                {% elif usuario.tipo_usuario == 1%}
+                Administrador
+                {% elif usuario.tipo_usuario == 2%}
+                Cliente
+                {% else %}
+                Error
+                {% endif %}
+              </td>
+              <td>
+                {% if usuario.deleted == 0%}
+                Inactivo
+                {% elif usuario.deleted == 1%}
+                Activo
+                {% else %}
+                Error
+                {% endif %}
+              </td>
+              <td class="text-center">
+                <a class="" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-ellipsis-h fa-sm" aria-hidden="true"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#editarUsuario"></i> Editar</a>
+                  </li>
+                  <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#eliminarUsuario"></i>
+                      Eliminar</a></li>
+                </ul>
+              </td>
+            </tr>
+            {% endif %}
+          {% endfor %}
         </tbody>
       </table>
     </div>
@@ -143,72 +98,83 @@ Admin1
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="#" class="mt-2">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="id_habitacion"><h5>Numero Habitacion</h5></label>-->
-                  <input type="text" name="first_name" id="id_usuario" placeholder="ID Usuario"
-                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'ID Usuario'" required
-                    class="single-input">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="tipo_habitacion"><h5>Tipo Habitacion</h5></label>-->
-                  <div class="default-select">
-                    <select style="display: none" id="tipo_usuario" aria-placeholder="Tipo de Usuario">
-                      <option value="1">SuperAdmin</option>
-                      <option value="2">Admin</option>
-  
-                    </select>
+        <form action="/gestion_usuarios/save" method="post" class="mt-2">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="id_habitacion"><h5>Numero Habitacion</h5></label>-->
+                    <input type="text" name="username" id="username" placeholder="ID Usuario"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'ID Usuario'" required
+                      class="single-input">
                   </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="cant_huespedes"><h5>Cantidad Personas</h5></label>-->
-                  <input type="text" name="last_name" id="id_nombre" placeholder="Nombre" onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = 'Nombre'" required class="single-input">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="id_habitacion"><h5>Numero Habitacion</h5></label>-->
+                    <input type="password" name="password" id="password" placeholder="Contraseña" onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Contraseña'" required class="single-input">
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="precio_habitacion"><h5>Precio</h5></label>-->
-                  <input type="text" id="id_apellido" placeholder="Apellido" onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = 'Apellido'" required class="single-input">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="cant_huespedes"><h5>Cantidad Personas</h5></label>-->
+                    <input type="text" name="id_nombre" id="id_nombre" placeholder="Nombre" onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Nombre'" required class="single-input">
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <!--<label class="form-label" for="status_habitacion"><h5>Status</h5></label>-->
-                  <div class="default-select">
-                    <input type="text" id="id_correo" placeholder="Correo" onfocus="this.placeholder = ''"
-                      onblur="this.placeholder = 'Correo'" required class="single-input">
-                    </select>
-                    <div class="nice-select" tabindex="0"><span class="current">Estado</span>
-                      <ul class="list">
-                        <li data-value="1" class="option selected focus">Activo</li>
-                        <li data-value="2" class="option">Inactivo</li>
-  
-                      </ul>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <!--<label class="form-label" for="precio_habitacion"><h5>Precio</h5></label>-->
+                    <input type="text" id="id_apellido" name="id_apellido"  placeholder="Apellido" onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Apellido'" required class="single-input">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="default-select"> 
+                      <select style="display: none" id="tipo_usuario" name="tipo_usuario">
+                        <option value="1">Administrador</option>
+                        <option value="0">Super Administrador</option>
+                      </select>
+                      <div class="nice-select" tabindex="0"><span class="current">Tipo Usuario</span>
+                        <ul class="list">
+                          <li data-value="1" class="option selected focus">Administrador</li>
+                          <li data-value="0" class="option">Super Administrador</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="default-select"> 
+                      <select style="display: none" id="estado" name="estado">
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                      </select>
+                      <div class="nice-select" tabindex="0"><span class="current">Estado</span>
+                        <ul class="list">
+                          <li data-value="1" class="option selected focus">Activo</li>
+                          <li data-value="0" class="option">Inactivo</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Agregar</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Agregar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

@@ -24,7 +24,7 @@ class Habitacion(db.Model):
   precio = FloatField()
   tipo_habitacion = IntegerField() # 0=economica, 1=sencilla, 2=doble, 3=romantica
   cant_personas = IntegerField()
-  estado = IntegerField() # 0=inactiva, 1=disponible, 2=disponible
+  estado = IntegerField() # 0=inactiva, 1=disponible, 2=reservada
   deleted = IntegerField() # 0=deleted(hide), 1=active
 
 class Calificacion(db.Model):
