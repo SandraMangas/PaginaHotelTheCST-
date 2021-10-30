@@ -20,6 +20,7 @@
             <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
             <link href="../static/css/styles.css" rel="stylesheet" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+            <link href="../static/css/comment.css">
         
     </head>
     <body>
@@ -27,7 +28,7 @@
         <!--================Search Bar =================-->
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">The CST Hotel</a>
+            <a class="navbar-brand ps-3" href="/admin">The CST Hotel</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -40,12 +41,12 @@
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i> Admin_Name </a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i> {% block username %}{% endblock %} </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Configuración</a></li>
-                        <li><a class="dropdown-item" href="#!">Ir a inicio</a></li>
+                        <li><a class="dropdown-item" href="/">Ir a inicio</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="/">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -56,7 +57,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Principal</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="/admin">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -68,26 +69,26 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="">Habitaciones</a>
-                                    <a class="nav-link" href="">Usuarios</a>
-                                    <a class="nav-link" href="">Huespedes</a>
-                                    <a class="nav-link" href="">Comentarios</a>
-                                    <a class="nav-link" href="">Reservas</a>
+                                    <a class="nav-link" href="/gestion_habitaciones">Habitaciones</a>
+                                    <a class="nav-link" href="/gestion_usuarios">Usuarios</a>
+                                    <a class="nav-link" href="/gestion_huespedes">Huespedes</a>
+                                    <a class="nav-link" href="/gestion_comentarios">Comentarios</a>
+                                    <a class="nav-link" href="/gestion_reservas">Reservas</a>
                                     
                                 </nav>
                             </div>
-                                <a class="nav-link" href="charts.html">
+                                <a class="nav-link" href="">
                                 <div class="sb-nav-link-icon"><i class="fa fa-key"></i></div>
                                 Seguridad
                             </a>
                                 
                             
                             <div class="sb-sidenav-menu-heading">Otros</div>
-                            <a class="nav-link" href="charts.html">
+                            <a class="nav-link" href="">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Gráficas
                             </a>
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Reportes
                             </a>
@@ -99,7 +100,9 @@
             <div id="layoutSidenav_content">
                 <!--aqui va cuadros de dashboard-->
                 <main>
-                    
+                    {% block contenido %}
+
+                    {% endblock %}
                 </main>
                 <!--aqui finalizan los cuadros de dashboard-->
                 <footer class="py-4 bg-light mt-auto">
@@ -116,14 +119,11 @@
                 </footer>
             </div>
         </div>
-       <!--================Search Bar =================-->
-
-       
-
-        <!--<h1>The Cullinan South Tower - {% block titulo %} {% endblock %}</h1>
-
-        {% block content %}  
-        {% endblock %}-->
+        <!--================Search Bar =================-->
+        
+        {% block modales %}
+        
+        {% endblock %}
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
