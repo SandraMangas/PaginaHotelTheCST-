@@ -1,6 +1,6 @@
 """
 create table calificacion
-date created: 2021-10-29 05:40:20.494641
+date created: 2021-10-30 04:07:12.160195
 """
 
 
@@ -11,6 +11,7 @@ def upgrade(migrator):
         table.foreign_key('TEXT', 'cliente_id', on_delete=None, on_update=None, references='cliente.usuario_id')
         table.text('comentario')
         table.int('calificacion')
+        table.bool('deleted')
 
 
 def downgrade(migrator):

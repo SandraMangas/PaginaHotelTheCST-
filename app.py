@@ -57,7 +57,7 @@ def registro():
 # RUTAS DE LA APLICACION - VISTAS ADMIN
 # -------------------------------------
 
-# Ruta inicio admin
+# Ruta inicio admin - Ruta temporal
 @app.route('/admin')
 def inicioAdmin():
     return render_template("/inicio_admin.html")
@@ -65,27 +65,31 @@ def inicioAdmin():
 # Ruta gestion usuarios + Listar usuarios
 @app.route('/gestion_usuarios', methods=["GET","POST"])
 def gestion_usuarios():
-    lista_usuarios = list(Usuario.select())
-    return render_template("/gestion_user.html", lista_usuarios=lista_usuarios)
+    tipo_usuario = "Traer el rol de usuario"
+    lista_usuarios = list(Usuario.select().where(Usuario.deleted==False))
+
+    return render_template("/gestion_user.html", lista_usuarios=lista_usuarios) #rol=tipo_usuario
 
 # Ruta gestion huespedes + Listar huespedes
 @app.route('/gestion_huespedes')
 def gestion_huespedes():
-    lista_huespedes = list(Cliente.select(Cliente, Usuario).join(Usuario))
+    tipo_usuario = "Traer el rol de usuario"
+    lista_huespedes = list(Cliente.select(Cliente, Usuario).join(Usuario).where(Usuario.deleted==False))
 
-    return render_template("/gestion_huespedes.html", lista_huespedes=lista_huespedes)
+    return render_template("/gestion_huespedes.html", lista_huespedes=lista_huespedes) #rol=tipo_usuario
 
 # Ruta gestion habitaciones + Listar habitaciones
 @app.route('/gestion_habitaciones', methods=["GET","POST"])
 def gestion_habitaciones():
-    lista_habitaciones = list(Habitacion.select())
+    tipo_usuario = "Traer el rol de usuario"
+    lista_habitaciones = list(Habitacion.select().where(Habitacion.deleted==False))
 
-    return render_template("/gestion_hab.html", lista_habitaciones=lista_habitaciones)
+    return render_template("/gestion_hab.html", lista_habitaciones=lista_habitaciones) #rol=tipo_usuario
 
 # Ruta gestion reservas + Listar reservas
 @app.route('/gestion_reservas')
 def gestion_reservas():
-    lista_reservas = list(Reserva.select(Reserva, Usuario).join(Usuario))
+    lista_reservas = list(Reserva.select().where(Reserva.deleted==False))
 
     return render_template("/gestion_reservas.html", lista_reservas=lista_reservas)
 
@@ -107,7 +111,7 @@ def gestion_habitaciones_save():
     precio_hab = request.form["precio_habitacion"]
     estado_hab = request.form["status_habitacion"]
 
-    habitacion, creado = Habitacion.get_or_create(id=id_hab, precio=precio_hab, tipo_habitacion=tipo_hab, cant_personas=cant_personas, estado=estado_hab, deleted=1)
+    habitacion, creado = Habitacion.get_or_create(id=id_hab, precio=precio_hab, tipo_habitacion=tipo_hab, cant_personas=cant_personas, estado=estado_hab, deleted=False)
 
     return redirect("/gestion_habitaciones")
 
@@ -121,7 +125,7 @@ def gestion_usuarios_save():
     tipo_usuario = int(request.form["tipo_usuario"])
     estado = int(request.form["estado"])
 
-    usuario, creado = Usuario.get_or_create(username =username, password=bcrypt.generate_password_hash(password), nombre=nombre, apellido=apellido, tipo_usuario=tipo_usuario, deleted=estado)
+    usuario, creado = Usuario.get_or_create(username =username, password=bcrypt.generate_password_hash(password), nombre=nombre, apellido=apellido, tipo_usuario=tipo_usuario, estado=estado, deleted=False)
 
     return redirect("/gestion_usuarios")
 
@@ -138,7 +142,7 @@ def gestion_huespedes_save():
     tipo_usuario = 2
     estado = int(request.form["status_usuario"])
 
-    usuario, creado = Usuario.get_or_create(username =username, password=bcrypt.generate_password_hash(password), nombre=nombre, apellido=apellido, tipo_usuario=tipo_usuario, deleted=estado)
+    usuario, creado = Usuario.get_or_create(username =username, password=bcrypt.generate_password_hash(password), nombre=nombre, apellido=apellido, tipo_usuario=tipo_usuario, estado=estado, deleted=False)
 
     cliente, creado = Cliente.get_or_create(usuario=usuario, telefono=telefono, email=email, direccion=direccion)
 
@@ -158,12 +162,11 @@ def gestion_reservas_save():
     fecha_llegada = request.form["check_in"].split("/")
     fecha_salida = request.form["check_out"].split("/")
     cant_personas = int(request.form["cant_huespedes"])
+    estado = int(request.form["estado_reserva"])
     
-    habitacion = list(Habitacion.select().where(Habitacion.tipo_habitacion==tipo_hab))[0]
+    habitacion = list(Habitacion.select().where(Habitacion.tipo_habitacion==tipo_hab & Habitacion.estado==1))[0]
 
-    reserva, creado = Reserva.get_or_create(habitacion=habitacion, usuario=username, fecha_ingreso=datetime.datetime(int(fecha_llegada[0]), int(fecha_llegada[1]), int(fecha_llegada[2])), fecha_salida=datetime.datetime(int(fecha_salida[0]), int(fecha_salida[1]), int(fecha_salida[2])), cant_personas=cant_personas, deleted=1)
-
-# Crear Comentarios
+    reserva, creado = Reserva.get_or_create(habitacion=habitacion, usuario=username, nombre_cliente=nombre, apellido_cliente=apellido, telefono_cliente=telefono, email_cliente=email, direccion_cliente=direccion, fecha_ingreso=datetime(int(fecha_llegada[0]), int(fecha_llegada[1]), int(fecha_llegada[2])), fecha_salida=datetime(int(fecha_salida[0]), int(fecha_salida[1]), int(fecha_salida[2])), cant_personas=cant_personas, estado=estado,deleted=False)
 
 # Editar usuarios
 

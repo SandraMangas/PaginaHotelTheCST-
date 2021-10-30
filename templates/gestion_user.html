@@ -62,9 +62,9 @@ Admin1
                 {% endif %}
               </td>
               <td>
-                {% if usuario.deleted == 0%}
+                {% if usuario.estado == 0%}
                 Inactivo
-                {% elif usuario.deleted == 1%}
+                {% elif usuario.estado == 1%}
                 Activo
                 {% else %}
                 Error
