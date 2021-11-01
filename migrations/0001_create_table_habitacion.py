@@ -1,6 +1,6 @@
 """
 create table habitacion
-date created: 2021-10-29 05:40:20.488671
+date created: 2021-10-30 04:07:12.153508
 """
 
 
@@ -11,7 +11,7 @@ def upgrade(migrator):
         table.int('tipo_habitacion')
         table.int('cant_personas')
         table.int('estado')
-        table.int('deleted')
+        table.bool('deleted')
 
 
 def downgrade(migrator):

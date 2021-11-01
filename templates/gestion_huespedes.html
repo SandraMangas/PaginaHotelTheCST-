@@ -57,9 +57,9 @@ Admin1
                         <td>{{cliente.email}}</td>
                         <td>{{cliente.direccion}}</td>
                         <td>
-                            {% if cliente.usuario.deleted == 0%}
+                            {% if cliente.usuario.estado == 0%}
                             Inactivo
-                            {% elif cliente.usuario.deleted == 1%}
+                            {% elif cliente.usuario.estado == 1%}
                             Activo
                             {% else %}
                             Error
