@@ -10,7 +10,7 @@ class Usuario(db.Model):
   apellido = TextField()
   tipo_usuario = IntegerField() # 0=superadmin, 1=admin, 2=cliente
   estado = IntegerField() # 0=inactivo, 1=active
-  #deleted = IntegerField() # 0=deleted(hide), 1=active
+  deleted = BooleanField() # False=visible, True=oculto
 
 
 class Cliente(db.Model):
@@ -18,7 +18,6 @@ class Cliente(db.Model):
   telefono = TextField()
   email = TextField() # Debe ser unico
   direccion = TextField()
-  # fecha_nacimiento = DateField()
 
 class Habitacion(db.Model):
   id = TextField(primary_key=True)
@@ -26,7 +25,7 @@ class Habitacion(db.Model):
   tipo_habitacion = IntegerField() # 0=economica, 1=sencilla, 2=doble, 3=romantica
   cant_personas = IntegerField()
   estado = IntegerField() # 0=inactiva, 1=disponible, 2=reservada
-  #deleted = IntegerField() # 0=deleted(hide), 1=active
+  deleted = BooleanField() # False=visible, True=oculto
 
 class Calificacion(db.Model):
   id = AutoField()
@@ -34,6 +33,7 @@ class Calificacion(db.Model):
   cliente = ForeignKeyField(Cliente, backref="calificaciones")
   comentario = TextField()
   calificacion = IntegerField() # 0 min - 5 max
+  deleted = BooleanField() # False=visible, True=oculto
 
 class Reserva(db.Model):
   id = AutoField()
@@ -48,6 +48,6 @@ class Reserva(db.Model):
   fecha_salida = DateField() 
   cant_personas = IntegerField()
   estado = IntegerField() # 0=cancelada, 1=confirmada, 2=pagada
-  #deleted = IntegerField() # 0=cancelada, 1=confirmada, 2=pagada
+  deleted = BooleanField() # False=visible, True=oculto
 
 
