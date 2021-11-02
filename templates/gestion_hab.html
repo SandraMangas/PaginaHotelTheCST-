@@ -74,10 +74,8 @@
               <i class="fa fa-ellipsis-h fa-sm" aria-hidden="true"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#editarHabitacion"></i> Editar</a>
-              </li>
-              <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#eliminarHabitacion"></i>
-                  Eliminar</a></li>
+              <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#editarHabitacion"></i>Editar</a></li>
+              <li><a class="dropdown-item" href="#!" data-toggle="modal" data-target="#eliminarHabitacion"></i>Eliminar</a></li>
             </ul>
           </td>
         </tr>
@@ -179,7 +177,7 @@
   </div>
   <!--================Fin Agregar habitación===============-->
   
-  <!--================Editar habitación=================-->
+  <!--================Modal Editar habitación=================-->
   <div class="modal fade bd-example-modal-lg" id="editarHabitacion" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -192,70 +190,81 @@
             </button>
           </div>
           <div class="modal-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <!--<label class="form-label" for="id_habitacion"><h5>Numero Habitacion</h5></label>-->
-                    <input type="text" name="id_habitacion_e" id="id_habitacion_e" value="101" required disabled
-                      class="single-input">
-                  </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="id_habitacion">
+                    <h6>Numero Habitacion</h6>
+                  </label>
+                  <input type="text" name="id_habitacion_e" id="id_habitacion_e" value="{{ lista_habitaciones[1].id }}" required
+                    disabled class="single-input">
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <!--<label class="form-label" for="tipo_habitacion"><h5>Tipo Habitacion</h5></label>-->
-                    <div class="default-select">
-                      <select style="display: none" id="tipo_habitacion_e" name="tipo_habitacion_e">
-                        <option value="1">Sencilla</option>
-                        <option value="2">Doble</option>
-                        <option value="3">Romantica</option>
-                        <option value="0">Economica</option>
-                      </select>
-                      <div class="nice-select" tabindex="0"><span class="current">Tipo habitacion</span>
-                        <ul class="list">
-                          <li data-value="1" class="option selected focus">Sencilla</li>
-                          <li data-value="2" class="option">Doble</li>
-                          <li data-value="3" class="option">Romantica</li>
-                          <li data-value="0" class="option">Economica</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <!--<label class="form-label" for="cant_huespedes"><h5>Cantidad Personas</h5></label>-->
-                    <input type="text" name="cant_huespedes_e" id="cant_huespedes_e" placeholder="Cantidad Personas"
-                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cantidad Personas'" required
-                      class="single-input">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <!--<label class="form-label" for="precio_habitacion"><h5>Precio</h5></label>-->
-                    <input type="text" id="precio_habitacion_e" name="precio_habitacion_e" placeholder="Precio" onfocus="this.placeholder = ''"
-                      onblur="this.placeholder = 'Precio'" required class="single-input">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <!--<label class="form-label" for="status_habitacion"><h5>Status</h5></label>-->
-                    <div class="default-select">
-                      <select style="display: none" id="status_habitacion_e" name="status_habitacion_e">
-                        <option value="1">Disponible</option>
-                        <option value="2">Reservada</option>
-                        <option value="0">Inactiva</option>
-                      </select>
-                      <div class="nice-select" tabindex="0"><span class="current">Status</span>
-                        <ul class="list">
-                          <li data-value="1" class="option selected focus">Disponible</li>
-                          <li data-value="2" class="option">Reservada</li>
-                          <li data-value="0" class="option">Inactiva</li>
-                        </ul>
-                      </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="tipo_habitacion">
+                    <h6>Tipo Habitacion</h6>
+                  </label>
+                  <div class="default-select">
+                    <select style="display: none" id="tipo_habitacion_e" name="tipo_habitacion_e">
+                      <option value="1">Sencilla</option>
+                      <option value="2">Doble</option>
+                      <option value="3">Romantica</option>
+                      <option value="0">Economica</option>
+                    </select>
+                    <div class="nice-select" tabindex="0"><span class="current">Tipo de habitacion</span>
+                      <ul class="list">
+                        <li data-value="1" class="option">Sencilla</li>
+                        <li data-value="2" class="option">Doble</li>
+                        <li data-value="3" class="option">Romantica</li>
+                        <li data-value="0" class="option">Economica</li>
+                      </ul>
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="cant_huespedes">
+                    <h6>Cantidad Personas</h6>
+                  </label>
+                  <input type="text" name="cant_huespedes_e" id="cant_huespedes_e" placeholder="Cantidad Personas"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cantidad Personas'" required
+                    class="single-input" value="{{ lista_habitaciones[1].cant_personas }}">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="precio_habitacion">
+                    <h6>Precio</h6>
+                  </label>
+                  <input type="text" id="precio_habitacion_e" name="precio_habitacion_e" placeholder="Precio"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Precio'" required class="single-input"
+                    value="{{ lista_habitaciones[1].precio }}">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="status_habitacion">
+                    <h6>Status</h6>
+                  </label>
+                  <div class="default-select">
+                    <select style="display: none" id="status_habitacion_e" name="status_habitacion_e">
+                      <option value="1">Disponible</option>
+                      <option value="2">Reservada</option>
+                      <option value="0">Inactiva</option>
+                    </select>
+                    <div class="nice-select" tabindex="0"><span class="current">Estado</span>
+                      <ul class="list">
+                        <li data-value="1" class="option">Disponible</li>
+                        <li data-value="2" class="option">Reservada</li>
+                        <li data-value="0" class="option">Inactiva</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Editar</button>
