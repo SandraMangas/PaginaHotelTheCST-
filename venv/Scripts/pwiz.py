@@ -1,4 +1,4 @@
-#!D:\MisionTic\Ciclo 3\Retos\Sprint 3\Código\PaginaHotelTheCST-\PaginaHotelTheCST-\PaginaHotelTheCST-\venv\Scripts\python.exe
+#!c:\users\siado\desktop\misiontic2022_retos\proyecto_ciclo3\paginahotelthecst-\venv\scripts\python.exe
 
 import datetime
 import os

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, flash, redirect
+from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from datetime import datetime
 from config import dev
@@ -6,12 +7,28 @@ from models import *
 
 app= Flask(__name__)
 app.config.from_object(dev)
+login_manager = LoginManager()
 bcrypt = Bcrypt(app)
 db.init_app(app)
-
-sesion_iniciada = False
+login_manager.init_app(app)
 
 # RUTAS DE LA APLICACION - VISTAS CLIENTE
+
+login_manager.login_view = 'login'
+@login_manager.user_loader
+def load_user(user_id):
+    return Usuario.get(user_id)
+
+# Ruta Login
+@app.route("/login", methods=["GET","POST"])
+def login():
+    username = request.form["usuario"]
+    password = request.form["password"]
+
+    if request.method == "GET":
+        return render_template("login.html")
+    else:
+        return redirect('/home')
 
 # Ruta principal
 @app.route('/')
@@ -37,16 +54,6 @@ def galeria():
 @app.route('/contacto')
 def contacto():
     return render_template("/contacto.html")
-
-# Ruta Login
-@app.route("/login", methods=["GET","POST"])
-def ingreso():
-    global sesion_iniciada
-    if request.method == "GET":
-        return render_template("login.html")
-    else:
-        sesion_iniciada = True
-        return redirect('/home')
 
 # Ruta registro
 @app.route('/registro')
@@ -96,7 +103,19 @@ def gestion_reservas():
 # Ruta gestion comentarios
 @app.route('/gestion_comentarios')
 def gestion_comentarios():
-    return render_template("/gestion_comentarios.html")
+    id_hab = "101"
+    username = "adcastaneda"
+    if id_hab:
+        habitacion = list(Habitacion.select().where(Habitacion.id==id_hab & Habitacion.deleted==False))[0]
+        lista_comentarios = habitacion.calificaciones
+        
+    
+    return render_template("/gestion_comentarios.html", lista_comentarios=lista_comentarios)
+
+# Ruta graficas
+@app.route('/graficas')
+def graficas():
+    return render_template("/graficas.html")
 
 # ----------------------------------------------
 # FUNCIONES DE LA APLICACION - DASHBOARD
@@ -194,6 +213,8 @@ def gestion_habitaciones_update():
 
 # Editar comentarios
 
+# Eliminar 
+
 # ----------------------------------------------
 # FUNCIONES DE LA APLICACION - PAGINA CLIENTE
 # ----------------------------------------------
@@ -202,19 +223,48 @@ def gestion_habitaciones_update():
 @app.route('/registrarusuarios', methods=['POST', 'GET'] )
 def registrar_usuarios():
 
-        nombre = request.form['nombre']
-        apellido = request.form['apellido']
-        usuario = request.form['usuario']
-        #usuario = []
-        #usuario = (nombre,apellido,nusuario,check)
-        #global usuarios
-        #usuarios.append(usuario)
-        #print(usuarios)
-        #flash('Registro Exitoso', 'success')
-        #return render_template('usuario.html')
-    #else :
-        #flash('Por favor ingresa un usuario', 'success')
-        return render_template('inicio.html')
+    nombre = request.form["nombre_usuario"]
+    apellido = request.form["apellido_usuario"]
+    usuario = request.form["usuario"]
+    email = request.form["email"]
+    direccion = request.form["direccion"]
+    telefono = request.form["telefono"]
+    password = request.form["contrasena"]
+    confirm_pass = request.form["contrasena2"]
+    
+    # if password == confirm_pass: 
+    usuario, creado = Usuario.get_or_create(username =usuario, password=bcrypt.generate_password_hash(password), nombre=nombre, apellido=apellido, tipo_usuario=2, estado=1, deleted=False)
+
+    cliente, creado = Cliente.get_or_create(usuario=usuario, telefono=telefono, email=email, direccion=direccion)
+
+    return redirect('/')
+
+# Crear reserva
+@app.route('/crear_reserva', methods=['POST', 'GET'] )
+def crear_reserva():
+    # Traer el username del cliente
+    username = "dfernandez" #Viene del login
+    nombre = request.form["nombre"]
+    apellido = request.form["apellido"]
+    telefono = request.form["telefono"]
+    direccion = request.form["direccion"]
+    email = request.form["email"]
+    tipo_hab = int(request.form["tipo_hab"])
+    fecha_llegada = request.form["check_in"][slice(10)].split("-")
+    fecha_salida = request.form["check_out"][slice(10)].split("-")
+    cant_adultos = int(request.form["cant_ad"])
+    cant_ninos = int(request.form["cant_ni"])
+    cant_personas = cant_ninos + cant_adultos
+
+    habitacion = list(Habitacion.select().where(Habitacion.tipo_habitacion==tipo_hab & Habitacion.estado==1))[0]
+
+    reserva, creado = Reserva.get_or_create(habitacion=habitacion, usuario=username, nombre_cliente=nombre, apellido_cliente=apellido, telefono_cliente=telefono, email_cliente=email, direccion_cliente=direccion, fecha_ingreso=datetime(int(fecha_llegada[0]), int(fecha_llegada[1]), int(fecha_llegada[2])), fecha_salida=datetime(int(fecha_salida[0]), int(fecha_salida[1]), int(fecha_salida[2])), cant_personas=cant_personas, estado=2,deleted=False)
+
+    return redirect("/reserva")
+
+# Editar reserva
+
+# Editar perfil usuario
 
 
 if __name__=='__main__':

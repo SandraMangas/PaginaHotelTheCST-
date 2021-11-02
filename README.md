@@ -8,6 +8,7 @@ Página reservación hotel
    - . venv/Scripts/activate
 3. Intalar flask (flask --version / revisar si quedo instalado)
    - pip install flask
+   - pip install --upgrade pip (opcional despues de instalr flask)
 4. Cambiar el entorno del proyecto (cambiarlo a development)
    - $env:FLASK_ENV="development" (windows)
    - export FLASK_ENV="development"
@@ -17,3 +18,5 @@ Página reservación hotel
    - pip install peewee-moves
 7. Instalar flask bcrypt
    - pip install flask-bcrypt
+8. Instalar Flask-Login module
+   - pip install flask-login

@@ -9,7 +9,7 @@
             <div class="col-lg-2 col-md-2"></div>
             <div class="col-lg-8 col-md-8">
                 <h3 class="mb-30 title_color">Inicia Sesión</h3>
-                <form action="#">
+                <form action="/login" method="post">
                     <div class="mt-10">
                         <input type="text" name="usuario" placeholder="Usuario" onfocus="this.placeholder = ''"
                             onblur="this.placeholder = 'Usuario'" required class="single-input">
@@ -19,7 +19,7 @@
                             onblur="this.placeholder = 'Contraseña'" required class="single-input">
 
                         <div class="mt-10">
-                            <a href="#" class="genric-btn primary circle">Enviar</a>
+                            <button type="submit" class="genric-btn primary circle">Enviar</button>
                             <a href="/registro" class="genric-btn primary circle">Registrar</a>
                         </div>
 
